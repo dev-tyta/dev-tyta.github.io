@@ -15,10 +15,11 @@
       "region": ""
     },
     "profiles": [
-      { "network": "github", "username": "mmaluhia", "url": "http://github.com/dev-tyta" },
-      { "network": "linkedin", "username": "mollymaluhia", "url": "http://linkedin.com/in/testimonyadekoya" },
-      { "network": "twitter", "username": "mollymal", "url": "http://twitter.com/tee_tyta" },
-      { "network": "instagram", "username": "molly", "url": "http://instagram.com/tee_tyta" }
+      { "network": "github", "username": "dev-tyta", "url": "http://github.com/dev-tyta" },
+      { "network": "linkedin", "username": "testimonyadekoya", "url": "http://linkedin.com/in/testimonyadekoya" },
+      { "network": "twitter", "username": "Testys", "url": "http://twitter.com/tee_tyta" },
+      { "network": "instagram", "username": "tee_tyta", "url": "http://instagram.com/tee_tyta" },
+      { "network": "hashnode", "username": "writingtestys", "url": "https://writingtestys.hashnode.dev" }
     ]
   },
   "education": [
@@ -64,8 +65,8 @@
       "keywords": ["Computer Vision", "Natural Language Processing", "TensorFlow", "Transformers", "Scikit-Learn", "Keras", "OpenCV", "PyTorch", "Image Recognition", "Object Detection", "OCRs", "Generative AI", "CLIP", "BLIP", "GPT"]
     },
     {
-      "name": "Programming and Data Science",
-      "keywords": ["Python", "C++", "SQL", "Pandas", "Seaborn", "Matplotlib", "Dask", "Numpy"]
+      "name": "Programming Languages",
+      "keywords": ["Python", "C++", "SQL"]
     }
   ],
   "volunteer": [
