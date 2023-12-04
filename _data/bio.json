@@ -1,43 +1,44 @@
 {
   "basics": {
-    "name": "Molly Maluhia",
-    "label": "Student",
-    "picture": "https://github.com/kambergjohnson.png",
-    "email": "molly@hawaii.edu",
-    "phone": "808-333-4444",
-    "website": "https://mmaluhia.github.io",
+    "name": "Testimony Adekoya",
+    "label": "Machine Learning Engineer",
+    "picture": "https://github.com/dev-tyta.png",
+    "email": "testimonyadekoya.02@gmail.com",
+    "phone": "+2349030771022",
+    "website": "https://dev-tyta.github.io",
     "summary": "I am studying for a B.S. in Computer Science in the Department of Information and Computer Sciences at the University of Hawaii. I expect to graduate in Spring, 2024.",
-    "location": { "address": "", "postalCode": "96822", "city": "Honolulu", "countryCode": "USA", "region": "Hawaii" },
+    "location": { "address": "", "postalCode": "", "city": "Lagos", "countryCode": "Nigeria", "region": "" },
     "profiles": [
-      { "network": "github", "username": "mmaluhia", "url": "http://github.com/changeme" },
-      { "network": "linkedin", "username": "mollymaluhia", "url": "http://linkedin.com/in/changeme" },
-      { "network": "twitter", "username": "mollymal", "url": "http://twitter.com/changeme" },
-      { "network": "instagram", "username": "molly", "url": "http://instagram.com/changeme" }
+      { "network": "github", "username": "mmaluhia", "url": "http://github.com/dev-tyta" },
+      { "network": "linkedin", "username": "mollymaluhia", "url": "http://linkedin.com/in/testimonyadekoya" },
+      { "network": "twitter", "username": "mollymal", "url": "http://twitter.com/tee_tyta" },
+      { "network": "instagram", "username": "molly", "url": "http://instagram.com/tee_tyta" }
     ]
   },
   "interests": [
-    { "name": "Interactive media" },
-    { "name": "Neuromorphic Computing" },
-    { "name": "Quantum Computing" },
+    { "name": "Artificial Intelligence" },
+    { "name": "Computer Vision" },
+    { "name": "Generative AI" },
     { "name": "Robotics" },
-    { "name": "3D Graphics" }
+    { "name": "Embedded Systems Engineering" },
+    { "name": "AIOT" }
   ],
   "skills": [
     {
       "name": "Languages and Frameworks",
-      "keywords": [ "C", "C++", "Java", "Javascript", "Assembly", "Common Lisp" ]
+      "keywords": [ "Python", "C++", "OpenCV", "Flask", "FastAPI", "Streamlit" ]
     },
     {
       "name": "Toolsets/OS",
-      "keywords": [ "MacOS", "Ubuntu", "Git/GitHub", "g++", "TI LaunchPad" ]
+      "keywords": [ "Windows", "", "Git/GitHub", "Google Colab", "" ]
     }
   ],
   "education": [
     {
-      "institution": "University of Hawaii, Honolulu, HI",
-      "area": "Computer Science (expected Spring, 2018)",
-      "studyType": "B.S.",
-      "startDate": "2013-09-01",
+      "institution": "Federal University of Agriculture Abeokuta (FUNAAB), Ogun State, Nigeria.",
+      "area": "Electrical and Electronics Engineering",
+      "studyType": "B.Eng.",
+      "startDate": "2020-09-01",
       "endDate": "Present",
       "courses": [
       ]
@@ -45,27 +46,27 @@
   ],
   "work": [
     {
-      "company": "UH Manoa Board of Publications",
-      "position": "Web Developer",
+      "company": "Rediones",
+      "position": "Machine Learning Engineer",
       "website": "",
-      "startDate": "2015-08-01",
+      "startDate": "2023-05-23",
       "endDate": "Present",
-      "summary": "Head of online presence for Ka Leo",
+      "summary": "",
       "highlights": [
-        "Maintain, update, and oversee official college newspaper website",
-        "Drive, design and build student-community projects for UH Manoa"
+        "Developing and deploying an AI system responsible for generating topic sentences based on the text or image provided by the User",
+        "Working cloasely with the Frontend and Backend team."
       ]
     },
     {
-      "company": "UH Information Technology Services",
-      "position": "Help Desk Consultant",
-      "website": "http://www.hawaii.edu/its/",
-      "startDate": "2015-01-01",
-      "endDate": "2016-03-15",
+      "company": "Zummit Infolabs",
+      "position": "Junior Data Scientist (Intern)",
+      "website": "",
+      "startDate": "2021-08-30",
+      "endDate": "2021-11-01",
       "summary": "",
       "highlights": [
-        "Troubleshoot software, hardware and networking issues over the phone",
-        "Answer phone and email responses to the ITS Help Desk"
+        "",
+        ""
       ]
     }
   ],
