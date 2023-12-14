@@ -1,7 +1,3 @@
-To restructure the documentation of your "MaizeFolioID" project into the target structure provided, you would need to adapt the content and format to match the layout, elements, and style of the "Micromouse" project documentation. Here's how you can do it:
-
-### Restructured Documentation for MaizeFolioID
-
 ---
 layout: project
 type: project
