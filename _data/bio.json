@@ -1,0 +1,114 @@
+{
+  "basics": {
+    "name": "Testimony Adekoya",
+    "label": "Machine Learning Engineer",
+    "picture": "https://github.com/dev-tyta.png",
+    "email": "testimonyadekoya.02@gmail.com",
+    "phone": "+2349030771022",
+    "website": "https://dev-tyta.github.io",
+    "summary": "A seasoned Machine Learning Engineer with a strong foundation in computer vision and natural language processing. Proficient in TensorFlow, Transformers, and various ML tools, I have developed innovative solutions in image recognition, object detection, and OCRs. My experience extends to generative AI using advanced models like CLIP, BLIP, and GPT, showcasing my ability to harness cutting-edge technologies to solve complex problems. Committed to continual learning and applying AI to make meaningful impacts.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Lagos",
+      "countryCode": "Nigeria",
+      "region": ""
+    },
+    "profiles": [
+      { "network": "github", "username": "dev-tyta", "url": "http://github.com/dev-tyta" },
+      { "network": "linkedin", "username": "testimonyadekoya", "url": "http://linkedin.com/in/testimonyadekoya" },
+      { "network": "twitter", "username": "Testys", "url": "http://twitter.com/tee_tyta" },
+      { "network": "instagram", "username": "tee_tyta", "url": "http://instagram.com/tee_tyta" },
+      { "network": "hashnode", "username": "writingtestys", "url": "https://writingtestys.hashnode.dev" }
+    ]
+  },
+  "education": [
+    {
+      "institution": "Federal University of Agriculture Abeokuta",
+      "area": "Electrical and Electronic Engineering",
+      "studyType": "B.Eng.",
+      "startDate": "2020-02",
+      "endDate": "Present",
+      "courses": []
+    },
+    {
+      "institution": "Deep Learning Indaba",
+      "area": "Conference",
+      "studyType": "Participant",
+      "startDate": "2023",
+      "endDate": "2023",
+      "location": "Ghana",
+      "summary": "Participated in the Deep Learning Indaba conference in Ghana, focusing on advancements in deep learning and AI."
+    }
+  ],
+  "experience": [
+    {
+      "company": "Zummit Infolabs",
+      "position": "Junior Data Scientist Intern",
+      "website": "",
+      "startDate": "2021-08",
+      "endDate": "2021-11",
+      "summary": "Contributed to the Queue Time Detection project using computer vision techniques, developing object detection models."
+    },
+    {
+      "company": "Rediones",
+      "position": "Machine Learning Engineer",
+      "website": "",
+      "startDate": "2023-05",
+      "endDate": "Present",
+      "summary": "Developing an automated image classifier using ML techniques, closely collaborating with frontend and backend teams."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Machine Learning and AI",
+      "keywords": ["Computer Vision", "Natural Language Processing", "TensorFlow", "Transformers", "Scikit-Learn", "Keras", "OpenCV", "PyTorch", "Image Recognition", "Object Detection", "OCRs", "Generative AI", "CLIP", "BLIP", "GPT"]
+    },
+    {
+      "name": "Programming Languages",
+      "keywords": ["Python", "C++", "SQL"]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Google Developer Students Club FUNAAB",
+      "position": "Mentor",
+      "startDate": "2022-01",
+      "endDate": "2021-11",
+      "summary": "Mentored AI enthusiasts, guiding career development."
+    },
+    {
+      "organization": "DSN FUNAAB",
+      "position": "Deputy Lead",
+      "startDate": "2021-04",
+      "endDate": "Present",
+      "summary": "Deputy lead, organizing community programs and mentoring members."
+    },
+    {
+      "organization": "Omdena Lagos Chapter",
+      "position": "Member",
+      "startDate": "2021-10",
+      "endDate": "Present",
+      "summary": "Collaborated on projects, contributing to group initiatives."
+    },
+    {
+      "organization": "Data Scientist Network",
+      "position": "Member",
+      "startDate": "2021-04",
+      "endDate": "Present",
+      "summary": "Participated in boot camps and community programs."
+    }
+  ],
+  "interests": [
+    { "name": "Artificial Intelligence" },
+    { "name": "Machine Learning" },
+    { "name": "Computer Vision" },
+    { "name": "Data Science" }
+  ],
+  "references": [
+    {
+      "name": "Available upon request"
+    }
+  ]
+}
+
