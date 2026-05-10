@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script>(function(){var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light')})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog — Testimony Adekoya</title>
   <meta name="description" content="Thoughts on AI, building in Africa, ML research, and engineering craft by Testimony Adekoya.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="icon" href="favicon.ico" sizes="any">
+  <!-- <link rel="icon" href="favicon.ico" sizes="any"> -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,6 +28,59 @@
       --amber: #f59e0b;
       --grad: linear-gradient(135deg, #3b82f6, #10b981);
     }
+
+    /* ── LIGHT THEME ── */
+    [data-theme="light"] {
+      --bg: #f5f5f4;
+      --bg-card: #ffffff;
+      --bg-card-hover: #eeeeec;
+      --border: rgba(0,0,0,0.08);
+      --border-hover: rgba(0,0,0,0.22);
+      --text: #111111;
+      --text-2: #444444;
+      --text-3: #888888;
+    }
+    [data-theme="light"] body { background: var(--bg); color: var(--text); }
+    [data-theme="light"] .nav-inner { background: rgba(245,245,244,0.88); }
+    [data-theme="light"] #nav.scrolled .nav-inner { background: rgba(245,245,244,0.97); border-color: rgba(0,0,0,0.1); }
+    [data-theme="light"] .nav-links { background: rgba(245,245,244,0.97); }
+    [data-theme="light"] .nav-toggle span { background: var(--text); }
+    [data-theme="light"] .blog-page-title { background: linear-gradient(160deg, #111111 30%, #555555 100%); -webkit-background-clip: text; background-clip: text; }
+    [data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+
+    /* ── READING PROGRESS BAR ── */
+    #reading-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      z-index: 200;
+      pointer-events: none;
+      transition: width 0.1s linear;
+    }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      flex-shrink: 0;
+      margin-left: 4px;
+    }
+    .theme-toggle:hover { border-color: var(--border-hover); color: var(--text); background: rgba(255,255,255,0.04); }
+    [data-theme="light"] .theme-toggle:hover { background: rgba(0,0,0,0.04); }
+    .theme-toggle svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
 
     html { scroll-behavior: smooth; }
 
@@ -421,6 +475,8 @@
 </head>
 <body>
 
+<div id="reading-progress" role="progressbar" aria-hidden="true" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
 <!-- ═══ NAV ═══ -->
 <nav id="nav" aria-label="Primary navigation">
   <div class="container">
@@ -436,9 +492,14 @@
         <li><a href="index.html#research">Research</a></li>
         <li><a href="index.html#skills">Skills</a></li>
         <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="now.html">Now</a></li>
         <li><a href="index.html#contact">Contact</a></li>
-        <li><a class="nav-cta" href="cv_ml_engineer.pdf" target="_blank" rel="noopener">Download CV</a></li>
+        <li><a class="nav-cta" href="Testimony_Adekoya_Resume.pdf" target="_blank" rel="noopener">Download CV</a></li>
       </ul>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -589,7 +650,39 @@
 (function() {
   'use strict';
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
+
+  /* Reading progress bar */
+  const bar = document.getElementById('reading-progress');
+  function updateProgress() {
+    const scrollTop = window.scrollY;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docH > 0 ? Math.min(100, (scrollTop / docH) * 100) : 0;
+    if (bar) { bar.style.width = pct + '%'; bar.setAttribute('aria-valuenow', Math.round(pct)); }
+  }
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+    updateProgress();
+  }, { passive: true });
+
+  /* Dark / Light mode */
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      html.setAttribute('data-theme', 'light');
+      themeToggle && themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    } else {
+      html.removeAttribute('data-theme');
+      themeToggle && themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    }
+    localStorage.setItem('theme', theme);
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+    });
+  }
 
   const toggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');

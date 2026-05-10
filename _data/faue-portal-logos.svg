@@ -1,0 +1,320 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 2400" width="1200" height="2400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;display=swap');
+      
+      .wordmark {
+        font-family: 'DM Sans', 'General Sans', sans-serif;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+      }
+      .label {
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 500;
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        fill: #999;
+      }
+      .sublabel {
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 400;
+        font-size: 11px;
+        letter-spacing: 0.05em;
+        fill: #BBB;
+      }
+    </style>
+    
+    <!-- Portal Mark A: Rounded keyhole — circle flowing into a tapered opening -->
+    <g id="portal-a">
+      <!-- Outer ring -->
+      <circle cx="0" cy="0" r="38" fill="none" stroke="currentColor" stroke-width="10"/>
+      <!-- The aperture gap at the bottom — creates the "looking through" feeling -->
+      <rect x="-5" y="20" width="10" height="28" rx="5" fill="currentColor"/>
+      <!-- Inner dot — the focal point, what you discover -->
+      <circle cx="0" cy="-2" r="8" fill="currentColor"/>
+    </g>
+    
+    <!-- Portal Mark B: Abstract lens/aperture — two arcs creating a portal opening -->
+    <g id="portal-b">
+      <!-- Left arc -->
+      <path d="M -8 -40 A 40 40 0 0 0 -8 40" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+      <!-- Right arc -->
+      <path d="M 8 -40 A 40 40 0 0 1 8 40" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+      <!-- Center focal point -->
+      <circle cx="0" cy="0" r="6" fill="currentColor"/>
+    </g>
+    
+    <!-- Portal Mark C: Geometric portal — rounded square with inner cutout creating depth -->
+    <g id="portal-c">
+      <rect x="-40" y="-40" width="80" height="80" rx="20" fill="currentColor"/>
+      <!-- Inner portal opening — the window you look through -->
+      <rect x="-18" y="-18" width="36" height="36" rx="10" fill="white"/>
+      <!-- Depth line — subtle inner shadow suggesting you can look through -->
+      <rect x="-11" y="-11" width="22" height="22" rx="6" fill="currentColor" opacity="0.15"/>
+    </g>
+    
+    <!-- Portal Mark D: The Aperture Ring — a circle with a stylized opening, like a camera aperture or eye -->
+    <g id="portal-d">
+      <!-- Main ring -->
+      <circle cx="0" cy="0" r="36" fill="none" stroke="currentColor" stroke-width="8"/>
+      <!-- Upper aperture blade -->
+      <path d="M -20 -12 Q 0 -28 20 -12" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <!-- Lower aperture blade -->
+      <path d="M -20 12 Q 0 28 20 12" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+      <!-- The eye/focal center -->
+      <circle cx="0" cy="0" r="5" fill="currentColor"/>
+    </g>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="2400" fill="#F7F5F2"/>
+  
+  <!-- Title -->
+  <text x="600" y="70" text-anchor="middle" font-family="'DM Sans', sans-serif" font-weight="600" font-size="14" letter-spacing="0.4em" fill="#163B2C" text-transform="uppercase">FAUE — LOGO EXPLORATIONS</text>
+  <text x="600" y="95" text-anchor="middle" font-family="'DM Sans', sans-serif" font-weight="400" font-size="12" letter-spacing="0.15em" fill="#999">THE PORTAL CONCEPT</text>
+  
+  
+  <!-- ==================== -->
+  <!-- EXPLORATION A: The Keyhole Portal -->
+  <!-- ==================== -->
+  
+  <text x="100" y="170" class="label">EXPLORATION A — THE KEYHOLE</text>
+  <text x="100" y="190" class="sublabel">A ring with a focal point and grounding element. Suggests peering into possibility.</text>
+  
+  <!-- Dark app icon -->
+  <rect x="100" y="220" width="200" height="200" rx="44" fill="#163B2C"/>
+  <g transform="translate(200, 316)" style="color: #F7F5F2">
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#F7F5F2" stroke-width="10"/>
+    <rect x="-5" y="20" width="10" height="28" rx="5" fill="#F7F5F2"/>
+    <circle cx="0" cy="-2" r="8" fill="#F7F5F2"/>
+  </g>
+  
+  <!-- Light app icon -->
+  <rect x="340" y="220" width="200" height="200" rx="44" fill="#FFF" stroke="#E8E4DF" stroke-width="1.5"/>
+  <g transform="translate(440, 316)" style="color: #163B2C">
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#163B2C" stroke-width="10"/>
+    <rect x="-5" y="20" width="10" height="28" rx="5" fill="#163B2C"/>
+    <circle cx="0" cy="-2" r="8" fill="#163B2C"/>
+  </g>
+  
+  <!-- Horizontal lockup dark bg -->
+  <rect x="600" y="220" width="500" height="95" rx="12" fill="#163B2C"/>
+  <g transform="translate(660, 267)" style="color: #F7F5F2">
+    <circle cx="0" cy="0" r="22" fill="none" stroke="#F7F5F2" stroke-width="6"/>
+    <rect x="-3" y="12" width="6" height="16" rx="3" fill="#F7F5F2"/>
+    <circle cx="0" cy="-1" r="5" fill="#F7F5F2"/>
+  </g>
+  <text x="710" y="276" class="wordmark" fill="#F7F5F2" font-size="36">faue</text>
+  
+  <!-- Horizontal lockup light bg -->
+  <rect x="600" y="335" width="500" height="95" rx="12" fill="#FFF" stroke="#E8E4DF" stroke-width="1"/>
+  <g transform="translate(660, 382)" style="color: #163B2C">
+    <circle cx="0" cy="0" r="22" fill="none" stroke="#163B2C" stroke-width="6"/>
+    <rect x="-3" y="12" width="6" height="16" rx="3" fill="#163B2C"/>
+    <circle cx="0" cy="-1" r="5" fill="#163B2C"/>
+  </g>
+  <text x="710" y="391" class="wordmark" fill="#163B2C" font-size="36">faue</text>
+  
+  
+  <!-- ==================== -->
+  <!-- EXPLORATION B: The Lens Portal -->
+  <!-- ==================== -->
+  
+  <text x="100" y="500" class="label">EXPLORATION B — THE LENS</text>
+  <text x="100" y="520" class="sublabel">Two arcs forming an opening. Like parting curtains to reveal your style.</text>
+  
+  <!-- Dark app icon -->
+  <rect x="100" y="550" width="200" height="200" rx="44" fill="#163B2C"/>
+  <g transform="translate(200, 650)">
+    <path d="M -8 -40 A 40 40 0 0 0 -8 40" fill="none" stroke="#F7F5F2" stroke-width="9" stroke-linecap="round"/>
+    <path d="M 8 -40 A 40 40 0 0 1 8 40" fill="none" stroke="#F7F5F2" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="6" fill="#F7F5F2"/>
+  </g>
+  
+  <!-- Light app icon -->
+  <rect x="340" y="550" width="200" height="200" rx="44" fill="#FFF" stroke="#E8E4DF" stroke-width="1.5"/>
+  <g transform="translate(440, 650)">
+    <path d="M -8 -40 A 40 40 0 0 0 -8 40" fill="none" stroke="#163B2C" stroke-width="9" stroke-linecap="round"/>
+    <path d="M 8 -40 A 40 40 0 0 1 8 40" fill="none" stroke="#163B2C" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="6" fill="#163B2C"/>
+  </g>
+  
+  <!-- Horizontal lockup dark bg -->
+  <rect x="600" y="550" width="500" height="95" rx="12" fill="#163B2C"/>
+  <g transform="translate(660, 597)">
+    <path d="M -5 -24 A 24 24 0 0 0 -5 24" fill="none" stroke="#F7F5F2" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M 5 -24 A 24 24 0 0 1 5 24" fill="none" stroke="#F7F5F2" stroke-width="5.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="3.5" fill="#F7F5F2"/>
+  </g>
+  <text x="710" y="606" class="wordmark" fill="#F7F5F2" font-size="36">faue</text>
+  
+  <!-- Horizontal lockup light bg -->
+  <rect x="600" y="665" width="500" height="95" rx="12" fill="#FFF" stroke="#E8E4DF" stroke-width="1"/>
+  <g transform="translate(660, 712)">
+    <path d="M -5 -24 A 24 24 0 0 0 -5 24" fill="none" stroke="#163B2C" stroke-width="5.5" stroke-linecap="round"/>
+    <path d="M 5 -24 A 24 24 0 0 1 5 24" fill="none" stroke="#163B2C" stroke-width="5.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="3.5" fill="#163B2C"/>
+  </g>
+  <text x="710" y="721" class="wordmark" fill="#163B2C" font-size="36">faue</text>
+  
+  
+  <!-- ==================== -->
+  <!-- EXPLORATION C: The Frame Portal -->
+  <!-- ==================== -->
+  
+  <text x="100" y="830" class="label">EXPLORATION C — THE FRAME</text>
+  <text x="100" y="850" class="sublabel">Rounded square with inner portal. Depth and discovery. Boldest option.</text>
+  
+  <!-- Dark app icon -->
+  <rect x="100" y="880" width="200" height="200" rx="44" fill="#163B2C"/>
+  <g transform="translate(200, 980)">
+    <rect x="-40" y="-40" width="80" height="80" rx="20" fill="#F7F5F2"/>
+    <rect x="-18" y="-18" width="36" height="36" rx="10" fill="#163B2C"/>
+    <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#F7F5F2" opacity="0.15"/>
+  </g>
+  
+  <!-- Light app icon -->
+  <rect x="340" y="880" width="200" height="200" rx="44" fill="#FFF" stroke="#E8E4DF" stroke-width="1.5"/>
+  <g transform="translate(440, 980)">
+    <rect x="-40" y="-40" width="80" height="80" rx="20" fill="#163B2C"/>
+    <rect x="-18" y="-18" width="36" height="36" rx="10" fill="#FFF"/>
+    <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#163B2C" opacity="0.12"/>
+  </g>
+  
+  <!-- Horizontal lockup dark bg -->
+  <rect x="600" y="880" width="500" height="95" rx="12" fill="#163B2C"/>
+  <g transform="translate(655, 927)">
+    <rect x="-24" y="-24" width="48" height="48" rx="12" fill="#F7F5F2"/>
+    <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#163B2C"/>
+    <rect x="-7" y="-7" width="14" height="14" rx="4" fill="#F7F5F2" opacity="0.15"/>
+  </g>
+  <text x="710" y="936" class="wordmark" fill="#F7F5F2" font-size="36">faue</text>
+  
+  <!-- Horizontal lockup light bg -->
+  <rect x="600" y="995" width="500" height="95" rx="12" fill="#FFF" stroke="#E8E4DF" stroke-width="1"/>
+  <g transform="translate(655, 1042)">
+    <rect x="-24" y="-24" width="48" height="48" rx="12" fill="#163B2C"/>
+    <rect x="-11" y="-11" width="22" height="22" rx="6" fill="#FFF"/>
+    <rect x="-7" y="-7" width="14" height="14" rx="4" fill="#163B2C" opacity="0.12"/>
+  </g>
+  <text x="710" y="1051" class="wordmark" fill="#163B2C" font-size="36">faue</text>
+  
+  
+  <!-- ==================== -->
+  <!-- EXPLORATION D: The Aperture Eye -->
+  <!-- ==================== -->
+  
+  <text x="100" y="1160" class="label">EXPLORATION D — THE APERTURE</text>
+  <text x="100" y="1180" class="sublabel">An eye-like form. The platform sees your style. Most organic and expressive.</text>
+  
+  <!-- Dark app icon -->
+  <rect x="100" y="1210" width="200" height="200" rx="44" fill="#163B2C"/>
+  <g transform="translate(200, 1310)">
+    <circle cx="0" cy="0" r="36" fill="none" stroke="#F7F5F2" stroke-width="8"/>
+    <path d="M -20 -12 Q 0 -28 20 -12" fill="none" stroke="#F7F5F2" stroke-width="7" stroke-linecap="round"/>
+    <path d="M -20 12 Q 0 28 20 12" fill="none" stroke="#F7F5F2" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="5" fill="#F7F5F2"/>
+  </g>
+  
+  <!-- Light app icon -->
+  <rect x="340" y="1210" width="200" height="200" rx="44" fill="#FFF" stroke="#E8E4DF" stroke-width="1.5"/>
+  <g transform="translate(440, 1310)">
+    <circle cx="0" cy="0" r="36" fill="none" stroke="#163B2C" stroke-width="8"/>
+    <path d="M -20 -12 Q 0 -28 20 -12" fill="none" stroke="#163B2C" stroke-width="7" stroke-linecap="round"/>
+    <path d="M -20 12 Q 0 28 20 12" fill="none" stroke="#163B2C" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="5" fill="#163B2C"/>
+  </g>
+  
+  <!-- Horizontal lockup dark bg -->
+  <rect x="600" y="1210" width="500" height="95" rx="12" fill="#163B2C"/>
+  <g transform="translate(658, 1257)">
+    <circle cx="0" cy="0" r="22" fill="none" stroke="#F7F5F2" stroke-width="5"/>
+    <path d="M -12 -7 Q 0 -17 12 -7" fill="none" stroke="#F7F5F2" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M -12 7 Q 0 17 12 7" fill="none" stroke="#F7F5F2" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="3" fill="#F7F5F2"/>
+  </g>
+  <text x="710" y="1266" class="wordmark" fill="#F7F5F2" font-size="36">faue</text>
+  
+  <!-- Horizontal lockup light bg -->
+  <rect x="600" y="1325" width="500" height="95" rx="12" fill="#FFF" stroke="#E8E4DF" stroke-width="1"/>
+  <g transform="translate(658, 1372)">
+    <circle cx="0" cy="0" r="22" fill="none" stroke="#163B2C" stroke-width="5"/>
+    <path d="M -12 -7 Q 0 -17 12 -7" fill="none" stroke="#163B2C" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M -12 7 Q 0 17 12 7" fill="none" stroke="#163B2C" stroke-width="4.5" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="3" fill="#163B2C"/>
+  </g>
+  <text x="710" y="1381" class="wordmark" fill="#163B2C" font-size="36">faue</text>
+  
+  
+  <!-- ==================== -->
+  <!-- LARGE HERO MARKS -->
+  <!-- ==================== -->
+  
+  <text x="600" y="1510" text-anchor="middle" class="label">MARKS AT SCALE</text>
+  
+  <!-- Mark A large -->
+  <g transform="translate(180, 1660)">
+    <circle cx="0" cy="0" r="68" fill="none" stroke="#163B2C" stroke-width="16"/>
+    <rect x="-8" y="36" width="16" height="48" rx="8" fill="#163B2C"/>
+    <circle cx="0" cy="-3" r="14" fill="#163B2C"/>
+    <text x="0" y="120" text-anchor="middle" class="label" font-size="11">A — KEYHOLE</text>
+  </g>
+  
+  <!-- Mark B large -->
+  <g transform="translate(420, 1660)">
+    <path d="M -12 -68 A 68 68 0 0 0 -12 68" fill="none" stroke="#163B2C" stroke-width="14" stroke-linecap="round"/>
+    <path d="M 12 -68 A 68 68 0 0 1 12 68" fill="none" stroke="#163B2C" stroke-width="14" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="10" fill="#163B2C"/>
+    <text x="0" y="120" text-anchor="middle" class="label" font-size="11">B — LENS</text>
+  </g>
+  
+  <!-- Mark C large -->
+  <g transform="translate(660, 1660)">
+    <rect x="-68" y="-68" width="136" height="136" rx="34" fill="#163B2C"/>
+    <rect x="-30" y="-30" width="60" height="60" rx="16" fill="#F7F5F2"/>
+    <rect x="-18" y="-18" width="36" height="36" rx="10" fill="#163B2C" opacity="0.12"/>
+    <text x="0" y="120" text-anchor="middle" class="label" font-size="11">C — FRAME</text>
+  </g>
+  
+  <!-- Mark D large -->
+  <g transform="translate(900, 1660)">
+    <circle cx="0" cy="0" r="62" fill="none" stroke="#163B2C" stroke-width="12"/>
+    <path d="M -34 -20 Q 0 -48 34 -20" fill="none" stroke="#163B2C" stroke-width="11" stroke-linecap="round"/>
+    <path d="M -34 20 Q 0 48 34 20" fill="none" stroke="#163B2C" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="0" cy="0" r="8" fill="#163B2C"/>
+    <text x="0" y="120" text-anchor="middle" class="label" font-size="11">D — APERTURE</text>
+  </g>
+  
+  
+  <!-- ==================== -->
+  <!-- COLOR PALETTE -->
+  <!-- ==================== -->
+  
+  <text x="100" y="1870" class="label">COLOR SYSTEM</text>
+  
+  <rect x="100" y="1900" width="160" height="70" rx="10" fill="#163B2C"/>
+  <text x="180" y="2000" text-anchor="middle" font-family="'DM Sans', monospace" font-size="11" fill="#888">Forest Green</text>
+  <text x="180" y="2018" text-anchor="middle" font-family="'DM Sans', monospace" font-size="10" fill="#BBB">#163B2C</text>
+  
+  <rect x="300" y="1900" width="160" height="70" rx="10" fill="#F7F5F2" stroke="#E0DBD5" stroke-width="1"/>
+  <text x="380" y="2000" text-anchor="middle" font-family="'DM Sans', monospace" font-size="11" fill="#888">Bone</text>
+  <text x="380" y="2018" text-anchor="middle" font-family="'DM Sans', monospace" font-size="10" fill="#BBB">#F7F5F2</text>
+  
+  <rect x="500" y="1900" width="160" height="70" rx="10" fill="#C47A5A"/>
+  <text x="580" y="2000" text-anchor="middle" font-family="'DM Sans', monospace" font-size="11" fill="#888">Terracotta</text>
+  <text x="580" y="2018" text-anchor="middle" font-family="'DM Sans', monospace" font-size="10" fill="#BBB">#C47A5A</text>
+  
+  <rect x="700" y="1900" width="160" height="70" rx="10" fill="#1A1A1A"/>
+  <text x="780" y="2000" text-anchor="middle" font-family="'DM Sans', monospace" font-size="11" fill="#888">Charcoal</text>
+  <text x="780" y="2018" text-anchor="middle" font-family="'DM Sans', monospace" font-size="10" fill="#BBB">#1A1A1A</text>
+  
+  <rect x="900" y="1900" width="160" height="70" rx="10" fill="#6B9A85"/>
+  <text x="980" y="2000" text-anchor="middle" font-family="'DM Sans', monospace" font-size="11" fill="#888">Sage</text>
+  <text x="980" y="2018" text-anchor="middle" font-family="'DM Sans', monospace" font-size="10" fill="#BBB">#6B9A85</text>
+  
+  
+  <!-- Footer -->
+  <text x="600" y="2120" text-anchor="middle" font-family="'DM Sans', sans-serif" font-weight="400" font-size="11" letter-spacing="0.2em" fill="#CCC">FAUE — FASHION INTELLIGENCE PLATFORM — 2026</text>
+
+</svg>
