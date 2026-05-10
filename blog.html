@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Testimony Adekoya</title>
+  <meta name="description" content="Thoughts on AI, building in Africa, ML research, and engineering craft by Testimony Adekoya.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --bg-card: #141414;
+      --bg-card-hover: #1c1c1c;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.18);
+      --text: #f0f0f0;
+      --text-2: #a3a3a3;
+      --text-3: #5a5a5a;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --grad: linear-gradient(135deg, #3b82f6, #10b981);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .hero-name, .section-title, .contact-title, .nav-brand, .blog-page-title {
+      font-family: 'Archivo', sans-serif;
+    }
+
+    /* ── UTILITY ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .section-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-3);
+      letter-spacing: 0.12em;
+      margin-right: 8px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: rgba(59,130,246,0.1);
+      color: var(--blue);
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+    .tag.green { background: rgba(16,185,129,0.1); color: var(--green); border-color: rgba(16,185,129,0.2); }
+    .tag.amber { background: rgba(245,158,11,0.1); color: var(--amber); border-color: rgba(245,158,11,0.2); }
+    .tag.gray  { background: rgba(255,255,255,0.04); color: var(--text-2); border-color: var(--border); }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      transition: padding 0.3s;
+    }
+    #nav.scrolled { padding: 10px 0; }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(14,14,14,0.78);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 100px;
+      padding: 7px 7px 7px 22px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #nav.scrolled .nav-inner {
+      border-color: rgba(255,255,255,0.13);
+      background: rgba(10,10,10,0.96);
+    }
+    .nav-brand {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 15%;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      transition: border-color 0.2s;
+    }
+    .nav-brand:hover .nav-avatar { border-color: rgba(59,130,246,0.5); }
+    .nav-brand span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--text); }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      background: var(--grad);
+      color: #fff !important;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── BLOG HERO ── */
+    .blog-hero {
+      padding: 160px 0 80px;
+      position: relative;
+    }
+    .blog-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: -120px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .blog-page-title {
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 20px;
+      background: linear-gradient(160deg, #ffffff 30%, #888888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .blog-hero-desc {
+      font-size: 16px;
+      color: var(--text-2);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-top: 16px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: linear-gradient(90deg, transparent 0%, var(--border) 30%, var(--border) 70%, transparent 100%); }
+
+    /* ── BLOG GRID ── */
+    .blog-section { padding: 80px 0 120px; }
+    .blog-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-3);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.04em;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: rgba(59,130,246,0.4);
+      color: var(--blue);
+      background: rgba(59,130,246,0.08);
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* ── BLOG CARD ── */
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-card:hover {
+      border-color: rgba(59,130,246,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(59,130,246,0.12);
+    }
+    .blog-card.draft {
+      opacity: 0.65;
+      cursor: default;
+      pointer-events: none;
+    }
+    .blog-card.draft:hover { transform: none; box-shadow: none; border-color: var(--border); }
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .blog-date {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .blog-read {
+      font-size: 11px;
+      color: var(--text-3);
+      font-weight: 500;
+    }
+    .blog-draft-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.2);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .blog-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .blog-excerpt {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.7;
+      flex: 1;
+      margin-bottom: 20px;
+    }
+    .blog-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; }
+
+    /* Featured card */
+    .blog-card.featured {
+      grid-column: span 2;
+    }
+    .blog-card.featured .blog-title { font-size: 24px; }
+    .blog-card.featured .blog-excerpt { font-size: 14px; max-width: 560px; }
+
+    /* ── NEWSLETTER / CTA ── */
+    .blog-cta {
+      margin-top: 72px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px;
+      background: rgba(59,130,246,0.03);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .blog-cta-text h3 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .blog-cta-text p { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .blog-cta-actions { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 22px;
+      border-radius: 100px;
+      background: var(--grad);
+      color: #fff;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 11px 22px;
+      border-radius: 100px;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-3);
+      font-size: 13px;
+    }
+    footer a { color: var(--text-3); text-decoration: none; }
+    footer a:hover { color: var(--text-2); }
+
+    /* ── FOCUS ── */
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+    a:focus-visible, button:focus-visible { border-radius: 8px; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog-card.featured { grid-column: span 2; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 61px; left: 0; right: 0; background: rgba(13,13,13,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 24px; gap: 20px; border-bottom: 1px solid var(--border); z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      .nav-inner { border-radius: 16px; padding: 10px 10px 10px 16px; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-card.featured { grid-column: span 1; }
+      .blog-cta { padding: 28px; }
+      .blog-cta-actions { width: 100%; }
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav" aria-label="Primary navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <img src="img/_DSC4243.JPG" alt="" class="nav-avatar" aria-hidden="true" loading="eager">
+        Testimony <span>Adekoya</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#research">Research</a></li>
+        <li><a href="index.html#skills">Skills</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a class="nav-cta" href="cv_ml_engineer.pdf" target="_blank" rel="noopener">Download CV</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="label"><span class="section-num">07 /</span>Writing</div>
+    <h1 class="blog-page-title">Blog</h1>
+    <p class="blog-hero-desc">Thinking out loud on AI, building in Africa, research methods, and the craft of engineering systems that actually work.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ POSTS ═══ -->
+<section class="blog-section">
+  <div class="container">
+
+    <div class="blog-filters" role="group" aria-label="Filter posts">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">ML &amp; Research</button>
+      <button class="filter-btn">Engineering</button>
+      <button class="filter-btn">Africa &amp; AI</button>
+      <button class="filter-btn">Reflections</button>
+    </div>
+
+    <div class="blog-grid">
+
+      <!-- Featured / pinned draft -->
+      <div class="blog-card featured draft" aria-label="Draft post">
+        <div class="blog-card-meta">
+          <span class="blog-date">Coming Soon</span>
+          <span class="blog-draft-badge">Draft</span>
+        </div>
+        <h2 class="blog-title">Building Intellign: How We Compressed Months of Assignment Work into Minutes</h2>
+        <p class="blog-excerpt">A deep dive into the architecture of a decision-intelligence platform — genetic algorithm design, the challenge of encoding domain constraints, human-in-the-loop review systems, and what happens when you deploy optimization to government clients who've never used ML before.</p>
+        <div class="blog-tags">
+          <span class="tag gray">Decision Intelligence</span>
+          <span class="tag gray">Genetic Algorithms</span>
+          <span class="tag gray">Engineering</span>
+        </div>
+      </div>
+
+      <div class="blog-card draft" aria-label="Draft post">
+        <div class="blog-card-meta">
+          <span class="blog-date">Coming Soon</span>
+          <span class="blog-draft-badge">Draft</span>
+        </div>
+        <h2 class="blog-title">Fine-Tuning TinyLLaMA for African Agricultural Contexts</h2>
+        <p class="blog-excerpt">What changes when you adapt a language model to serve farmers in Nigeria instead of developers in San Francisco? The data problem, domain shift, edge deployment, and why knowledge distillation matters more than model size.</p>
+        <div class="blog-tags">
+          <span class="tag gray">LLMs</span>
+          <span class="tag gray">Africa &amp; AI</span>
+          <span class="tag gray">ML Research</span>
+        </div>
+      </div>
+
+      <div class="blog-card draft" aria-label="Draft post">
+        <div class="blog-card-meta">
+          <span class="blog-date">Coming Soon</span>
+          <span class="blog-draft-badge">Draft</span>
+        </div>
+        <h2 class="blog-title">AfriVTON-Bench: Failure Modes When VTON Models Meet African Textiles</h2>
+        <p class="blog-excerpt">Pattern blurring, motif misalignment, texture drift — what we found when we ran IDM-VTON, OOTDiffusion, and CatVTON on high-frequency African textile patterns. Why frequency-domain analysis reveals things FID and SSIM alone can't.</p>
+        <div class="blog-tags">
+          <span class="tag gray">Computer Vision</span>
+          <span class="tag gray">Research</span>
+          <span class="tag gray">Africa &amp; AI</span>
+        </div>
+      </div>
+
+      <div class="blog-card draft" aria-label="Draft post">
+        <div class="blog-card-meta">
+          <span class="blog-date">Coming Soon</span>
+          <span class="blog-draft-badge">Draft</span>
+        </div>
+        <h2 class="blog-title">Three Times at Deep Learning Indaba: What the Conference Actually Teaches You</h2>
+        <p class="blog-excerpt">Attending DLI in Ghana, then Rwanda — how being in the room with African AI researchers changed how I think about relevance, context, and who research is really for.</p>
+        <div class="blog-tags">
+          <span class="tag gray">Africa &amp; AI</span>
+          <span class="tag gray">Community</span>
+          <span class="tag gray">Reflections</span>
+        </div>
+      </div>
+
+      <div class="blog-card draft" aria-label="Draft post">
+        <div class="blog-card-meta">
+          <span class="blog-date">Coming Soon</span>
+          <span class="blog-draft-badge">Draft</span>
+        </div>
+        <h2 class="blog-title">Synthetic Data at Scale: What I Learned Building the Synthik Pipeline</h2>
+        <p class="blog-excerpt">Parallelized LLM inference, multi-format export, schema enforcement across modalities — the engineering decisions behind a synthetic data system that needs to be auditable, not just fast.</p>
+        <div class="blog-tags">
+          <span class="tag gray">Data Engineering</span>
+          <span class="tag gray">LLMs</span>
+          <span class="tag gray">Engineering</span>
+        </div>
+      </div>
+
+      <div class="blog-card draft" aria-label="Draft post">
+        <div class="blog-card-meta">
+          <span class="blog-date">Coming Soon</span>
+          <span class="blog-draft-badge">Draft</span>
+        </div>
+        <h2 class="blog-title">On Leading a 100-Member AI Chapter at FUNAAB</h2>
+        <p class="blog-excerpt">What I learned building community: the crowdfunding campaign to send members to DLI, running weekly ML workshops, watching people you mentored become leaders themselves.</p>
+        <div class="blog-tags">
+          <span class="tag gray">Community</span>
+          <span class="tag gray">Leadership</span>
+          <span class="tag gray">Reflections</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="blog-cta">
+      <div class="blog-cta-text">
+        <h3>New posts coming soon.</h3>
+        <p>I write about ML engineering, research, and building AI from Africa. Follow me on X or connect on LinkedIn to get notified when I publish.</p>
+      </div>
+      <div class="blog-cta-actions">
+        <a href="https://x.com/_testys_" target="_blank" rel="noopener" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          Follow on X
+        </a>
+        <a href="https://www.linkedin.com/in/testimony-adekoya/" target="_blank" rel="noopener" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Designed &amp; built by <a href="index.html">Testimony Adekoya</a> · Lagos, Nigeria · 2026</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
+
+  const toggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,32 +1,24 @@
-# REQUIRED CHANGES
-# Edit next line to provide your own name.
-title: Testimony Adekoya's Portfolio
-# Edit next line, replacing 'techfolios' with your github username
-url: "https://devtyta.github.io"
-# Edit next line so that baseurl is "" if your repo is <username>.github.io
+# Site identity
+title: Testimony Adekoya — ML Engineer & Researcher
+url: "https://dev-tyta.github.io"
 baseurl: ""
 
-# OPTIONAL CHANGES
-## Specify the theme using any of the css files in css/techfolio-theme
-techfolio-theme: default.css
-## Specify the formatting for triple backquote code sections.
-rouge-theme: github.css
-
-# DON'T CHANGE THE FOLLOWING (unless you know what you're doing)
+# Build settings
 markdown: kramdown
 kramdown:
   hard_wrap: false
   input: GFM
   syntax_highlighter: rouge
 strict_front_matter: true
-mathjax: true
+
+# Exclude from build output
 exclude:
   - Gemfile
   - Gemfile.lock
-  - LICENSE
   - README.md
+  - bom_extraction_langgraph.py
+  - pyproject.toml
+
+# Include hidden files needed for GitHub Pages
 include:
   - .nojekyll
-  - _data
-plugins:
-  - jekyll-gist
