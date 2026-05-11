@@ -2318,10 +2318,35 @@
     btn.addEventListener('click', () => openDemo(btn.dataset.demo));
   });
 
-  /* NAV scroll effect */
+  /* NAV scroll effect + scroll-spy for active state */
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll-spy: highlight nav link matching the most-visible section
+  const spySections = ['about','experience','projects','research','skills','community','contact'];
+  const spyLinks = {};
+  spySections.forEach(id => {
+    const a = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (a) spyLinks[id] = a;
+  });
+
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      if (spyLinks[id]) {
+        if (entry.isIntersecting) {
+          Object.values(spyLinks).forEach(l => l.classList.remove('active'));
+          spyLinks[id].classList.add('active');
+        }
+      }
+    });
+  }, { threshold: 0.35 });
+
+  spySections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) spyObserver.observe(el);
+  });
 
   /* Mobile menu */
   const toggle = document.getElementById('nav-toggle');
