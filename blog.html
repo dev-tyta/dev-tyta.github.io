@@ -770,7 +770,7 @@
       console.log('🔧 LOCALHOST detected — using local dev API');
       return 'http://127.0.0.1:8000';
     }
-    const storedUrl = (localStorage.getItem('_blog_api') || '').replace(/\/$/, '');
+    const storedUrl = (localStorage.getItem('_blog_api') || 'https://port-backend.up.railway.app/').replace(/\/$/, '');
     console.log('🌐 PRODUCTION — using Railway URL:', storedUrl || '(not set)');
     return storedUrl;
   }

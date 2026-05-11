@@ -23,7 +23,7 @@
     if (['localhost', '127.0.0.1'].includes(location.hostname)) {
       return 'http://127.0.0.1:8000';
     }
-    return (localStorage.getItem('_chat_api') || localStorage.getItem('_blog_api') || '').replace(/\/$/, '');
+    return (localStorage.getItem('_chat_api') || localStorage.getItem('_blog_api') || 'https://port-backend.up.railway.app/').replace(/\/$/, '');
   }
   const AGENT_URL = (() => { const b = _apiBase(); return b ? b + '/agent' : null; })();
 
