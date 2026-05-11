@@ -829,7 +829,7 @@
   function openAdmin() {
     if (!API_URL) {
       console.warn('⚠️ No API URL configured for admin panel');
-      const url = prompt('Enter your blog API URL (e.g. https://blog-api.up.railway.app):');
+      const url = prompt('Enter your blog API URL (e.g. https://port-backend.up.railway.app/):');
       if (!url) return;
       localStorage.setItem('_blog_api', url.trim());
       console.log('✅ API URL saved to localStorage:', url.trim());

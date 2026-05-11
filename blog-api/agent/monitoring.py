@@ -107,11 +107,19 @@ def metrics_response() -> Response:
 
 # ── LangSmith setup ───────────────────────────────────────────────────────────
 def configure_langsmith() -> None:
-    """Enable LangSmith tracing if API key is present."""
-    key = os.getenv("LANGCHAIN_API_KEY")
-    if key:
-        os.environ.setdefault("LANGCHAIN_TRACING_V2", "true")
-        os.environ.setdefault("LANGCHAIN_PROJECT", "testimony-portfolio-agent")
-        logger.info('"event":"langsmith_enabled","project":"testimony-portfolio-agent"')
+    """
+    Enable LangSmith tracing only when LANGCHAIN_TRACING_V2=true is explicitly set
+    AND a valid LANGCHAIN_API_KEY is present. Auto-enable is disabled to prevent
+    noisy 403 warnings from invalid/expired keys.
+    """
+    key      = os.getenv("LANGCHAIN_API_KEY")
+    explicit = os.getenv("LANGCHAIN_TRACING_V2", "false").lower() == "true"
+
+    if key and explicit:
+        os.environ["LANGCHAIN_PROJECT"] = os.getenv("LANGCHAIN_PROJECT", "testimony-portfolio-agent")
+        logger.info('"event":"langsmith_enabled","project":"%s"', os.environ["LANGCHAIN_PROJECT"])
     else:
-        logger.info('"event":"langsmith_disabled","reason":"no_api_key"')
+        # Disable tracing so LangSmith client never fires — no 403 noise
+        os.environ["LANGCHAIN_TRACING_V2"] = "false"
+        reason = "no_api_key" if not key else "not_explicitly_enabled"
+        logger.info('"event":"langsmith_disabled","reason":"%s"', reason)

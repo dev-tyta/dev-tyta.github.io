@@ -30,6 +30,36 @@
   const SESSION_KEY  = '_chat_session_id';
   const MSGS_KEY     = '_chat_messages';    // persisted across pages
 
+  // ── Intent-based auto-navigation ────────────────────────────────────────────
+  // Fires BEFORE sending to agent when user explicitly says "take me to / go to / open X"
+  const NAV_INTENT_RE = /\b(take me to|go to|open|navigate to|show me)\b/i;
+  const NAV_KEYWORD_MAP = [
+    { keys: ['mmibc', 'breast cancer', 'multimodal diagnosis'],  url: '/projects/mmibc.html',  label: 'MMIBC Case Study' },
+    { keys: ['afrivton', 'vton', 'african textile', 'african fashion vton'], url: '/projects/afrivton.html', label: 'AfriVTON-Bench' },
+    { keys: ['now page', 'now', 'what you\'re building'],        url: '/now.html',             label: '/now page' },
+    { keys: ['blog'],                                            url: '/blog.html',            label: 'Blog' },
+    { keys: ['experience', 'work history'],                      url: '/#experience',          label: 'Work Experience' },
+    { keys: ['projects', 'my projects'],                         url: '/#projects',            label: 'Projects' },
+    { keys: ['research'],                                        url: '/#research',            label: 'Research' },
+    { keys: ['skills', 'stack'],                                 url: '/#skills',              label: 'Skills' },
+    { keys: ['contact'],                                         url: '/#contact',             label: 'Contact' },
+    { keys: ['synthik', 'synthetic data pipeline'],              url: '/post.html?post=synthik-synthetic-data-pipeline',              label: 'Synthik Post' },
+    { keys: ['afrivton post', 'vton post', 'afrivton bench post'], url: '/post.html?post=afrivton-bench-vton-african-textiles',        label: 'AfriVTON Blog Post' },
+    { keys: ['mmibc post', 'breast cancer post'],                url: '/post.html?post=mmibc-explainable-multimodal-breast-cancer',   label: 'MMIBC Blog Post' },
+  ];
+
+  // Returns {url, label} if message is an explicit navigation intent, else null
+  function detectNavIntent(msg) {
+    if (!NAV_INTENT_RE.test(msg)) return null;
+    const lower = msg.toLowerCase();
+    for (const entry of NAV_KEYWORD_MAP) {
+      if (entry.keys.some(k => lower.includes(k))) {
+        return { url: entry.url, label: entry.label };
+      }
+    }
+    return null;
+  }
+
   // ── Page-aware data ─────────────────────────────────────────────────────────
   const CURRENT_PAGE = location.pathname + location.search;
 
@@ -523,6 +553,19 @@
     async function sendMessage(text) {
       text = (text || '').trim();
       if (!text || isLoading) return;
+
+      // Auto-navigate if user explicitly says "take me to / go to X"
+      const navIntent = detectNavIntent(text);
+      if (navIntent) {
+        addUserMsg(text);
+        pushMessage({ role: 'user', text });
+        input.value = '';
+        input.style.height = 'auto';
+        // Show brief confirmation then navigate
+        addBotMsg(`Taking you to ${navIntent.label}…`, null, null, null);
+        setTimeout(() => { location.href = navIntent.url; }, 900);
+        return;
+      }
 
       addUserMsg(text);
       pushMessage({ role: 'user', text });
