@@ -16,7 +16,7 @@
   'use strict';
 
   // ── Config ──────────────────────────────────────────────────────────────────
-  const AVATAR_IMG = 'img/_DSC4243.JPG';
+  const AVATAR_IMG = 'https://res.cloudinary.com/snapfeast/image/upload/v1778465100/_DSC4243_jtzrop.jpg'
 
   // localhost → always local dev server; production → stored Railway URL
   function _apiBase() {
