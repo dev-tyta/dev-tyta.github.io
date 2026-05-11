@@ -1063,7 +1063,228 @@
       .hero-actions { flex-direction: column; align-items: center; }
       .btn-primary, .btn-outline { width: 100%; justify-content: center; }
       .about-stats { grid-template-columns: repeat(2, 1fr); }
+      .demo-modal-panel { border-radius: 16px; max-height: 88vh; }
+      .demo-flow { flex-direction: column; gap: 0; }
+      .demo-flow-arrow { transform: rotate(90deg); }
+      .project-card.featured { flex-direction: column; }
     }
+
+    /* ── PROJECT DEMO BUTTON ── */
+    .project-footer { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); display: flex; gap: 8px; flex-wrap: wrap; }
+    .demo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .demo-btn:hover { border-color: rgba(59,130,246,0.4); color: var(--blue); background: rgba(59,130,246,0.07); }
+    .demo-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .demo-btn.primary { background: var(--grad); border-color: transparent; color: #fff; }
+    .demo-btn.primary:hover { opacity: 0.88; }
+
+    /* ── DEMO MODAL ── */
+    .demo-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,0);
+      backdrop-filter: blur(0px);
+      transition: background 0.3s, backdrop-filter 0.3s;
+      pointer-events: none;
+    }
+    .demo-modal[data-open] {
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      pointer-events: all;
+    }
+    .demo-modal-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hover);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 820px;
+      max-height: 82vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(32px) scale(0.97);
+      opacity: 0;
+      transition: transform 0.32s cubic-bezier(0.22,1,0.36,1), opacity 0.28s;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .demo-modal[data-open] .demo-modal-panel { transform: none; opacity: 1; }
+    .demo-modal-close {
+      position: sticky;
+      top: 0;
+      float: right;
+      margin: 16px 16px 0 0;
+      z-index: 10;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .demo-modal-close:hover { border-color: var(--border-hover); color: var(--text); }
+    .demo-modal-close svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+    .demo-modal-body { padding: 24px 32px 32px; }
+
+    /* Modal inner components */
+    .dm-header { margin-bottom: 24px; }
+    .dm-title { font-family: 'Archivo', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: var(--text); margin-bottom: 8px; }
+    .dm-desc { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+    .dm-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 4px 11px; border-radius: 100px; margin-bottom: 12px; letter-spacing: 0.04em; }
+    .dm-badge.live { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: var(--green); }
+    .dm-badge.live::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2s ease-in-out infinite; }
+    .dm-badge.research { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25); color: var(--blue); }
+
+    .demo-flow { display: flex; align-items: center; gap: 0; margin: 24px 0; flex-wrap: nowrap; overflow-x: auto; }
+    .demo-flow-step { flex-shrink: 0; text-align: center; }
+    .demo-flow-node { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; min-width: 120px; }
+    [data-theme="light"] .demo-flow-node { background: rgba(0,0,0,0.03); }
+    .demo-flow-node.blue { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.25); }
+    .demo-flow-node.green { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.25); }
+    .demo-flow-icon { font-size: 20px; margin-bottom: 6px; }
+    .demo-flow-label { font-size: 11px; font-weight: 700; color: var(--text); }
+    .demo-flow-sub { font-size: 10px; color: var(--text-3); margin-top: 2px; line-height: 1.35; }
+    .demo-flow-arrow { padding: 0 10px; color: var(--text-3); font-size: 18px; flex-shrink: 0; }
+
+    /* Chat demo */
+    .chat-demo { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 14px; }
+    [data-theme="light"] .chat-demo { background: rgba(0,0,0,0.02); }
+    .chat-msg { display: flex; gap: 10px; align-items: flex-end; max-width: 85%; opacity: 0; transform: translateY(8px); transition: opacity 0.4s, transform 0.4s; }
+    .chat-msg.visible { opacity: 1; transform: none; }
+    .chat-msg.user { align-self: flex-end; flex-direction: row-reverse; }
+    .chat-avatar { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+    .chat-avatar.bot { background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25); }
+    .chat-avatar.user-av { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.25); }
+    .chat-bubble { padding: 10px 14px; border-radius: 14px; font-size: 13px; line-height: 1.6; color: var(--text-2); max-width: 100%; }
+    .chat-bubble.bot { background: var(--bg); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+    [data-theme="light"] .chat-bubble.bot { background: rgba(0,0,0,0.04); }
+    .chat-bubble.user { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.2); border-bottom-right-radius: 4px; color: var(--text); }
+
+    .dm-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
+    .dm-link { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; padding: 10px 18px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; }
+    .dm-link:hover { opacity: 0.82; transform: translateY(-1px); }
+    .dm-link.primary { background: var(--grad); color: #fff; }
+    .dm-link.outline { border: 1px solid var(--border); color: var(--text-2); }
+    .dm-link.outline:hover { border-color: var(--border-hover); color: var(--text); }
+    .dm-link svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .dm-stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 20px 0; }
+    .dm-stat { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+    [data-theme="light"] .dm-stat { background: rgba(0,0,0,0.03); }
+    .dm-stat-num { font-family: 'Archivo', sans-serif; font-size: 20px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .dm-stat-label { font-size: 10px; color: var(--text-3); margin-top: 3px; }
+
+    .dm-code { background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 10px; padding: 16px; font-family: monospace; font-size: 12px; color: #a3a3a3; overflow-x: auto; margin: 16px 0; }
+    [data-theme="light"] .dm-code { background: rgba(0,0,0,0.05); }
+    .dm-code .kw { color: var(--blue); }
+    .dm-code .str { color: var(--green); }
+    .dm-code .cm { color: var(--text-3); }
+
+    .dm-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin: 20px 0 10px; }
+
+    /* Telegram QR */
+    .tg-cta-wrap { display: flex; align-items: center; gap: 24px; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 14px; margin: 20px 0; flex-wrap: wrap; }
+    [data-theme="light"] .tg-cta-wrap { background: rgba(0,0,0,0.02); }
+    .tg-qr { width: 100px; height: 100px; border-radius: 8px; background: #fff; padding: 4px; flex-shrink: 0; }
+    .tg-qr img { width: 100%; height: 100%; display: block; }
+    .tg-info { flex: 1; min-width: 180px; }
+    .tg-info-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .tg-info-sub { font-size: 13px; color: var(--text-3); }
+
+    /* Verifacts live form */
+    .vf-form { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+    .vf-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 13px;
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    [data-theme="light"] .vf-input { background: rgba(0,0,0,0.04); }
+    .vf-input:focus { border-color: rgba(59,130,246,0.5); }
+    .vf-input::placeholder { color: var(--text-3); }
+    .vf-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: 10px;
+      background: var(--grad);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      transition: opacity 0.2s;
+      align-self: flex-start;
+    }
+    .vf-submit:hover:not(:disabled) { opacity: 0.88; }
+    .vf-submit:disabled { opacity: 0.55; cursor: not-allowed; }
+    .vf-submit svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .vf-loading { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-3); padding: 16px 0; }
+    .vf-spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
+    .vf-result { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .vf-verdict-banner {
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .vf-verdict-banner.verified { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: var(--green); }
+    .vf-verdict-banner.debunked { background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.25); color: #f87171; }
+    .vf-verdict-banner.mixture,.vf-verdict-banner.mostly_verified,.vf-verdict-banner.mostly_debunked { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25); color: var(--amber); }
+    .vf-verdict-banner.unverified { background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text-3); }
+    .vf-trust-row { display: flex; align-items: center; gap: 12px; }
+    .vf-trust-label { font-size: 11px; color: var(--text-3); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; flex-shrink: 0; }
+    .vf-trust-bar { flex: 1; height: 4px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; }
+    [data-theme="light"] .vf-trust-bar { background: rgba(0,0,0,0.08); }
+    .vf-trust-fill { height: 100%; border-radius: 4px; background: var(--grad); }
+    .vf-trust-score { font-size: 12px; font-weight: 700; color: var(--text-2); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+    .vf-claims-list { display: flex; flex-direction: column; gap: 8px; }
+    .vf-claim-item { padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); font-size: 12px; }
+    .vf-claim-verdict { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px; }
+    .vf-claim-verdict.verified { color: var(--green); }
+    .vf-claim-verdict.debunked { color: #f87171; }
+    .vf-claim-verdict.unverified { color: var(--text-3); }
+    .vf-claim-verdict.mixture { color: var(--amber); }
+    .vf-claim-text { color: var(--text-2); line-height: 1.55; }
+    .vf-claim-explain { color: var(--text-3); font-size: 11px; margin-top: 4px; line-height: 1.5; }
+    .vf-error { padding: 14px; border-radius: 10px; background: rgba(248,113,113,0.08); border: 1px solid rgba(248,113,113,0.2); font-size: 13px; color: #f87171; }
+    .vf-summary { font-size: 13px; color: var(--text-2); line-height: 1.7; padding: 14px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; }
+    [data-theme="light"] .vf-summary { background: rgba(0,0,0,0.02); }
   </style>
 </head>
 <body>
@@ -1371,15 +1592,28 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><rect x="16" y="2" width="6" height="6" rx="1"/><rect x="2" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/><rect x="16" y="9" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="16" width="6" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/></svg>
           </div>
           <div class="project-links">
+            <a href="projects/afrivton.html" class="project-link" aria-label="Case study — AfriVTON-Bench">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </a>
             <a href="https://github.com/dev-tyta" class="project-link" target="_blank" rel="noopener" aria-label="GitHub — AfriVTON-Bench">
               <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             </a>
           </div>
         </div>
         <div class="project-title">AfriVTON-Bench</div>
-        <div class="project-desc">Benchmark evaluating VTON model robustness on African textile patterns. Tests IDM-VTON, OOTDiffusion, CatVTON, and FitDiT with FID, LPIPS, SSIM, and frequency-domain texture analysis.</div>
+        <div class="project-desc">Benchmark evaluating VTON model robustness on African textile patterns. Tests FASHN-VTON and LEFFA across 111 garments, 16 categories, 7 African countries. Submitted to Deep Learning Indaba 2026.</div>
         <div class="project-tags">
-          <span class="tag">PyTorch</span><span class="tag">HF Diffusers</span><span class="tag">FID / LPIPS</span><span class="tag green">Research</span>
+          <span class="tag">PyTorch</span><span class="tag">HF Diffusers</span><span class="tag">gLPIPS / gSSIM</span><span class="tag green">DLI 2026</span>
+        </div>
+        <div class="project-footer">
+          <button class="demo-btn" data-demo="afrivton">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="10 8 16 12 10 16 10 8"/></svg>
+            Explore
+          </button>
+          <a href="projects/afrivton.html" class="demo-btn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Case Study
+          </a>
         </div>
       </article>
 
@@ -1402,6 +1636,17 @@
           <div class="project-desc">Explainable multimodal vision transformer fusing mammography and ultrasonography for breast cancer diagnosis in low-resource clinical settings. Recognized for novel cross-modal feature fusion and clinical applicability. Best Poster Award — DSN AI+ Bootcamp 2025.</div>
           <div class="project-tags">
             <span class="tag">PyTorch</span><span class="tag">ViT</span><span class="tag">XAI</span><span class="tag amber" style="display:inline-flex;align-items:center;gap:4px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>Award</span>
+            <span class="tag green" style="display:inline-flex;align-items:center;gap:4px;">MIWAI 2026</span>
+          </div>
+          <div class="project-footer">
+            <button class="demo-btn" data-demo="mmibc">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="10 8 16 12 10 16 10 8"/></svg>
+              Explore
+            </button>
+            <a href="projects/mmibc.html" class="demo-btn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Case Study
+            </a>
           </div>
         </div>
         <div class="award-badge" style="align-self:flex-end;white-space:nowrap;flex-shrink:0;">
@@ -1429,6 +1674,12 @@
         <div class="project-tags">
           <span class="tag">FastAPI</span><span class="tag">PyTorch</span><span class="tag">OpenCV</span><span class="tag">PostgreSQL</span>
         </div>
+        <div class="project-footer">
+          <button class="demo-btn primary" data-demo="snapfeast">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="10 8 16 12 10 16 10 8"/></svg>
+            Live Demo
+          </button>
+        </div>
       </article>
 
       <article class="project-card">
@@ -1450,6 +1701,12 @@
         <div class="project-tags">
           <span class="tag">Langchain</span><span class="tag">RAG</span><span class="tag">Redis</span><span class="tag">HF Transformers</span>
         </div>
+        <div class="project-footer">
+          <button class="demo-btn primary" data-demo="thery">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Try Bot
+          </button>
+        </div>
       </article>
 
       <article class="project-card">
@@ -1468,6 +1725,12 @@
         <div class="project-tags">
           <span class="tag">NLP</span><span class="tag">FastAPI</span><span class="tag">Chrome Extension</span><span class="tag">Mobile App</span>
         </div>
+        <div class="project-footer">
+          <button class="demo-btn" data-demo="verifacts">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="10 8 16 12 10 16 10 8"/></svg>
+            How It Works
+          </button>
+        </div>
       </article>
 
     </div>
@@ -1485,15 +1748,16 @@
     <div class="research-grid">
 
       <article class="research-card">
-        <div class="research-status ongoing">Ongoing · 2026</div>
-        <h3 class="research-title">AfriVTON-Bench: Evaluating the Robustness of Virtual Try-On Models to African Textile Patterns</h3>
+        <div class="research-status submitted">Submitted · DLI 2026</div>
+        <h3 class="research-title">AfriVTON-Bench: Evaluating the Robustness of Virtual Try-On Models to African Textile Patterns and Garment Structures</h3>
         <div class="research-coauth">With Shiloh Oni</div>
-        <p class="research-desc">Designing a benchmark to evaluate how state-of-the-art VTON models handle African textiles with high-frequency patterns and non-Western garment silhouettes. Conducting a representation audit of VITON-HD, DressCode, and DeepFashion datasets. Developing evaluation protocols using FID, LPIPS, SSIM, and frequency-domain texture analysis to identify failure modes: pattern blurring, motif misalignment, and texture drift.</p>
+        <p class="research-desc">Benchmark exposing distribution-shift failures in VTON systems trained on Western fashion corpora. 111 African garment images across 16 categories, 7 countries, 5 sub-regions — paired with 15 diverse person model images for 1,012 evaluation pairs. Three systematic failure modes identified: pattern dissolution, drape collapse, and tonal drift — both architectures (FASHN-VTON, LEFFA) converge on near-identical garment distortion, pointing to the shared training distribution as root cause.</p>
         <div class="research-footer">
           <span class="tag">Computer Vision</span>
           <span class="tag">Generative Models</span>
           <span class="tag">Cultural Bias</span>
-          <span class="tag green">In Progress</span>
+          <span class="tag green">DLI 2026</span>
+          <a href="projects/afrivton.html" class="tag" style="text-decoration:none;cursor:pointer;">Case Study →</a>
         </div>
       </article>
 
@@ -1510,6 +1774,9 @@
         <div class="award-badge" style="margin-top:16px;">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
           Best Poster Award — DSN AI+ Bootcamp 2025
+        </div>
+        <div class="research-footer" style="margin-top:16px;">
+          <a href="projects/mmibc.html" class="tag" style="text-decoration:none;cursor:pointer;">Case Study →</a>
         </div>
       </article>
 
@@ -1572,6 +1839,16 @@
           <span class="skill-tag">CI/CD</span>
           <span class="skill-tag">Git</span>
           <span class="skill-tag">HF Spaces</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Monitoring & Observability</div>
+        <div class="skill-tags">
+          <span class="skill-tag">LangSmith</span>
+          <span class="skill-tag">Prometheus</span>
+          <span class="skill-tag">Structured Logging</span>
+          <span class="skill-tag">Model Drift Detection</span>
+          <span class="skill-tag">Grafana</span>
         </div>
       </div>
       <div class="skill-group">
@@ -1691,10 +1968,355 @@
   </div>
 </footer>
 
+<!-- ═══ DEMO MODAL ═══ -->
+<div id="demo-modal" class="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+  <div class="demo-modal-panel">
+    <button id="demo-modal-close" class="demo-modal-close" aria-label="Close demo">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="demo-modal-body" id="demo-modal-body"></div>
+  </div>
+</div>
+
+<!-- SnapFeast template -->
+<template id="tpl-snapfeast">
+  <div class="dm-header">
+    <div class="dm-badge live">Live API · HuggingFace Spaces</div>
+    <div class="dm-title" id="demo-modal-title">SnapFeast AI</div>
+    <div class="dm-desc">Mobile dining platform with CNN-based facial recognition login, collaborative filtering recommendations, and PostgreSQL order management. Backend deployed on HuggingFace Spaces via FastAPI.</div>
+  </div>
+  <div class="dm-section-label">System Flow</div>
+  <div class="demo-flow" role="img" aria-label="SnapFeast system flow">
+    <div class="demo-flow-step">
+      <div class="demo-flow-node blue">
+        <div class="demo-flow-icon" aria-hidden="true">📷</div>
+        <div class="demo-flow-label">Face Auth</div>
+        <div class="demo-flow-sub">CNN facial recognition 90% accuracy</div>
+      </div>
+    </div>
+    <div class="demo-flow-arrow" aria-hidden="true">→</div>
+    <div class="demo-flow-step">
+      <div class="demo-flow-node blue">
+        <div class="demo-flow-icon" aria-hidden="true">🧠</div>
+        <div class="demo-flow-label">Preference Analysis</div>
+        <div class="demo-flow-sub">Historical dining data + budget constraints</div>
+      </div>
+    </div>
+    <div class="demo-flow-arrow" aria-hidden="true">→</div>
+    <div class="demo-flow-step">
+      <div class="demo-flow-node green">
+        <div class="demo-flow-icon" aria-hidden="true">🍽️</div>
+        <div class="demo-flow-label">Recommendations</div>
+        <div class="demo-flow-sub">Collaborative filtering — personalized menu</div>
+      </div>
+    </div>
+    <div class="demo-flow-arrow" aria-hidden="true">→</div>
+    <div class="demo-flow-step">
+      <div class="demo-flow-node green">
+        <div class="demo-flow-icon" aria-hidden="true">📋</div>
+        <div class="demo-flow-label">Order + Feedback</div>
+        <div class="demo-flow-sub">PostgreSQL-backed · improves future recs</div>
+      </div>
+    </div>
+  </div>
+  <div class="dm-section-label">Live Endpoint</div>
+  <div class="dm-code">
+    <span class="cm"># Base URL</span><br>
+    <span class="kw">GET</span> <span class="str">https://testys-snapfeast-ai.hf.space</span><br><br>
+    <span class="cm"># Interactive API docs (Swagger UI)</span><br>
+    <span class="kw">GET</span> <span class="str">https://testys-snapfeast-ai.hf.space/docs</span><br><br>
+    <span class="cm"># Health check</span><br>
+    <span class="kw">GET</span> <span class="str">https://testys-snapfeast-ai.hf.space/health</span>
+  </div>
+  <div class="dm-actions">
+    <a href="https://testys-snapfeast-ai.hf.space/docs" class="dm-link primary" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Open API Docs
+    </a>
+    <a href="https://github.com/dev-tyta/SnapFeast-AI" class="dm-link outline" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+  </div>
+</template>
+
+<!-- Thery AI template -->
+<template id="tpl-thery">
+  <div class="dm-header">
+    <div class="dm-badge live">Live on Telegram · @TheryAIBot</div>
+    <div class="dm-title" id="demo-modal-title">Thery AI</div>
+    <div class="dm-desc">LLM-powered virtual therapist deployed on Telegram. Uses RAG for evidence-grounded responses, real-time emotion detection, mood-based music recommendations, and Redis-backed conversation memory that persists across sessions.</div>
+  </div>
+  <div class="dm-section-label">Conversation Demo</div>
+  <div class="chat-demo" id="thery-chat" aria-label="Simulated Thery AI conversation" role="log">
+    <div class="chat-msg" data-delay="200">
+      <div class="chat-avatar bot" aria-hidden="true">🧠</div>
+      <div class="chat-bubble bot">Hi, I'm Thery — your private mental wellness companion. How are you feeling today?</div>
+    </div>
+    <div class="chat-msg user" data-delay="900">
+      <div class="chat-avatar user-av" aria-hidden="true">You</div>
+      <div class="chat-bubble user">I've been having trouble sleeping and feeling really anxious for the past few weeks.</div>
+    </div>
+    <div class="chat-msg" data-delay="1700">
+      <div class="chat-avatar bot" aria-hidden="true">🧠</div>
+      <div class="chat-bubble bot">I hear you — sleep disruption and anxiety often feed each other in a difficult loop. You're not alone in this. Can you tell me when it started?</div>
+    </div>
+    <div class="chat-msg user" data-delay="2600">
+      <div class="chat-avatar user-av" aria-hidden="true">You</div>
+      <div class="chat-bubble user">About 2 weeks ago, after a stressful work presentation that didn't go well.</div>
+    </div>
+    <div class="chat-msg" data-delay="3500">
+      <div class="chat-avatar bot" aria-hidden="true">🧠</div>
+      <div class="chat-bubble bot">That makes sense. Stressful events can trigger anxiety that outlasts the original situation. 🎵 I'm putting on some calming ambient music for you. Let's talk through what's helping and what isn't — together we'll find a path forward.</div>
+    </div>
+  </div>
+  <div class="tg-cta-wrap">
+    <div class="tg-qr" aria-label="QR code for TheryAIBot on Telegram">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://t.me/TheryAIBot&bgcolor=ffffff&color=000000&margin=2" alt="QR code — scan to open @TheryAIBot on Telegram" loading="lazy">
+    </div>
+    <div class="tg-info">
+      <div class="tg-info-title">@TheryAIBot</div>
+      <div class="tg-info-sub">Scan to open on Telegram, or tap the button below. Your conversation history is private and persists across sessions via Redis.</div>
+    </div>
+  </div>
+  <div class="dm-actions">
+    <a href="https://t.me/TheryAIBot" class="dm-link primary" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Open in Telegram
+    </a>
+    <a href="https://github.com/dev-tyta/thery.ai" class="dm-link outline" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+  </div>
+</template>
+
+<!-- AfriVTON template -->
+<template id="tpl-afrivton">
+  <div class="dm-header">
+    <div class="dm-badge research">Submitted · Deep Learning Indaba 2026</div>
+    <div class="dm-title" id="demo-modal-title">AfriVTON-Bench</div>
+    <div class="dm-desc">Benchmark exposing distribution-shift failures in VTON systems when evaluated on African textile patterns and garment structures. 111 garments, 16 categories, 7 countries — three systematic failure modes identified.</div>
+  </div>
+  <div class="dm-stat-row" role="list">
+    <div class="dm-stat" role="listitem"><div class="dm-stat-num">111</div><div class="dm-stat-label">African Garments</div></div>
+    <div class="dm-stat" role="listitem"><div class="dm-stat-num">1,012</div><div class="dm-stat-label">Eval Pairs</div></div>
+    <div class="dm-stat" role="listitem"><div class="dm-stat-num">3.63–4.27×</div><div class="dm-stat-label">Garment Failure Index (g/p Ratio)</div></div>
+  </div>
+  <div class="dm-section-label">Three Failure Modes</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+    <div style="padding:12px 16px;border-left:3px solid #f87171;border-radius:0 8px 8px 0;background:rgba(248,113,113,0.05);font-size:13px;color:var(--text-2)"><strong style="color:var(--text)">Pattern Dissolution</strong> — High-frequency Ankara and Kente motifs blur under spatial warping. gSSIM 9.4–9.6% lower than Western controls.</div>
+    <div style="padding:12px 16px;border-left:3px solid var(--amber);border-radius:0 8px 8px 0;background:rgba(245,158,11,0.05);font-size:13px;color:var(--text-2)"><strong style="color:var(--text)">Drape Collapse</strong> — Voluminous silhouettes (Agbada, Boubou) collapse to body-fitted shapes. No prior in training distribution.</div>
+    <div style="padding:12px 16px;border-left:3px solid #a78bfa;border-radius:0 8px 8px 0;background:rgba(167,139,250,0.05);font-size:13px;color:var(--text-2)"><strong style="color:var(--text)">Tonal Drift</strong> — Apparent skin tone shifts in subjects with darker Monk Scale values during synthesis.</div>
+  </div>
+  <div class="dm-actions">
+    <a href="projects/afrivton.html" class="dm-link primary">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Full Case Study
+    </a>
+    <a href="https://github.com/dev-tyta" class="dm-link outline" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+  </div>
+</template>
+
+<!-- MMIBC template -->
+<template id="tpl-mmibc">
+  <div class="dm-header">
+    <div class="dm-badge research">Submitted · MIWAI 2026 · Best Poster DSN AI+ 2025</div>
+    <div class="dm-title" id="demo-modal-title">MMIBC</div>
+    <div class="dm-desc">Explainable multimodal Vision Transformer fusing mammography and ultrasonography for breast cancer diagnosis in low-resource settings. Parallel ViT backbones → feature-level fusion → Grad-CAM explainability.</div>
+  </div>
+  <div class="dm-stat-row" role="list">
+    <div class="dm-stat" role="listitem"><div class="dm-stat-num">84%</div><div class="dm-stat-label">Classification Accuracy</div></div>
+    <div class="dm-stat" role="listitem"><div class="dm-stat-num">2</div><div class="dm-stat-label">Imaging Modalities Fused</div></div>
+    <div class="dm-stat" role="listitem"><div class="dm-stat-num">Grad-CAM</div><div class="dm-stat-label">XAI Method</div></div>
+  </div>
+  <div class="dm-section-label">Architecture</div>
+  <div style="display:flex;align-items:center;gap:6px;overflow-x:auto;padding:16px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;margin:12px 0;">
+    <div style="text-align:center;flex-shrink:0"><div style="font-size:10px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">Mammography</div><div style="font-size:10px;color:var(--text-3);margin-top:2px">VinDr-Mammo</div></div>
+    <div style="color:var(--text-3);font-size:14px;flex-shrink:0">→</div>
+    <div style="text-align:center;flex-shrink:0"><div style="font-size:10px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">ViT Encoder A</div></div>
+    <div style="color:var(--text-3);font-size:14px;flex-shrink:0">⤵</div>
+    <div style="text-align:center;flex-shrink:0"><div style="font-size:10px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">Feature Fusion</div><div style="font-size:10px;color:var(--text-3);margin-top:2px">+ MLP Head</div></div>
+    <div style="color:var(--text-3);font-size:14px;flex-shrink:0">→</div>
+    <div style="text-align:center;flex-shrink:0"><div style="font-size:10px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">Diagnosis</div><div style="font-size:10px;color:var(--text-3);margin-top:2px">Grad-CAM XAI</div></div>
+    <div style="color:var(--text-3);font-size:14px;flex-shrink:0">⤴</div>
+    <div style="text-align:center;flex-shrink:0"><div style="font-size:10px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">ViT Encoder B</div></div>
+    <div style="color:var(--text-3);font-size:14px;flex-shrink:0">←</div>
+    <div style="text-align:center;flex-shrink:0"><div style="font-size:10px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:0.06em">Ultrasound</div><div style="font-size:10px;color:var(--text-3);margin-top:2px">BUSI dataset</div></div>
+  </div>
+  <div class="dm-actions">
+    <a href="projects/mmibc.html" class="dm-link primary">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Full Case Study
+    </a>
+    <a href="https://github.com/dev-tyta/MMIBC" class="dm-link outline" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+  </div>
+</template>
+
+<!-- Verifacts template — live API -->
+<template id="tpl-verifacts">
+  <div class="dm-header">
+    <div class="dm-badge live">Live API · Railway</div>
+    <div class="dm-title" id="demo-modal-title">Verifacts</div>
+    <div class="dm-desc">Real-time AI fact-checking. Enter any URL and an optional claim to verify — the system extracts factual claims, retrieves evidence via semantic search, and returns per-claim verdicts with confidence scores.</div>
+  </div>
+  <div class="dm-section-label">Try it live</div>
+  <div class="vf-form">
+    <input type="url" id="vf-url" class="vf-input" placeholder="https://example.com/news-article (required)" autocomplete="off">
+    <input type="text" id="vf-selection" class="vf-input" placeholder="Optional: paste a specific claim to focus on">
+    <button id="vf-submit" class="vf-submit">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Check Facts
+    </button>
+  </div>
+  <div id="vf-output"></div>
+  <div class="dm-actions" style="margin-top:16px;">
+    <a href="https://github.com/verifacts" class="dm-link outline" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      GitHub
+    </a>
+  </div>
+</template>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script>
 (function() {
   'use strict';
+
+  /* Demo modal */
+  const modal = document.getElementById('demo-modal');
+  const modalBody = document.getElementById('demo-modal-body');
+  const modalClose = document.getElementById('demo-modal-close');
+
+  function openDemo(key) {
+    const tpl = document.getElementById('tpl-' + key);
+    if (!tpl) return;
+    modalBody.innerHTML = '';
+    modalBody.appendChild(tpl.content.cloneNode(true));
+    modal.dataset.open = '';
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+    if (key === 'thery') animateChat();
+    if (key === 'verifacts') initVerifacts();
+  }
+
+  /* Verifacts live API */
+  function initVerifacts() {
+    const btn = document.getElementById('vf-submit');
+    const output = document.getElementById('vf-output');
+    if (!btn || !output) return;
+
+    const VERDICT_LABELS = {
+      verified: '✅ Verified', debunked: '❌ Debunked',
+      mostly_verified: '🟡 Mostly Verified', mostly_debunked: '🟠 Mostly Debunked',
+      mixture: '⚖️ Mixed', unverified: '❓ Unverified'
+    };
+
+    btn.addEventListener('click', async () => {
+      const urlVal = document.getElementById('vf-url').value.trim();
+      const sel = document.getElementById('vf-selection').value.trim();
+      if (!urlVal) {
+        output.innerHTML = '<div class="vf-error">Please enter a valid URL to analyze.</div>';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<span class="vf-spinner"></span> Analyzing… (may take 20–30s)';
+      output.innerHTML = '<div class="vf-loading"><span class="vf-spinner"></span> Extracting claims and retrieving evidence…</div>';
+
+      try {
+        const body = { url: urlVal, force_refresh: false };
+        if (sel) body.selection = sel;
+
+        const res = await fetch('https://verifacts-backend-production.up.railway.app/api/v1/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+          signal: AbortSignal.timeout(90000)
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.detail || `HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+        renderVerifacts(data, output, VERDICT_LABELS);
+      } catch (e) {
+        const msg = e.name === 'TimeoutError'
+          ? 'Request timed out (90s). The API may be waking up — try again.'
+          : `Error: ${e.message}`;
+        output.innerHTML = `<div class="vf-error">${msg}</div>`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Check Facts';
+      }
+    });
+  }
+
+  function renderVerifacts(data, el, labels) {
+    const v = data.verdict || {};
+    const src = data.source_identity || {};
+    const vKey = (v.overall_verdict || 'unverified').toLowerCase();
+    const vClass = ['verified','debunked','mixture','mostly_verified','mostly_debunked'].includes(vKey) ? vKey : 'unverified';
+    const score = Math.round(src.score || 0);
+    const claims = (data.claims || []).slice(0, 5);
+
+    const claimsHtml = claims.map(c => {
+      const cv = (c.verdict || 'unverified').toLowerCase();
+      return `<div class="vf-claim-item">
+        <div class="vf-claim-verdict ${cv}">${labels[cv] || cv.toUpperCase()}</div>
+        <div class="vf-claim-text">${escHtml(c.claim)}</div>
+        ${c.explanation ? `<div class="vf-claim-explain">${escHtml(c.explanation.slice(0, 180))}…</div>` : ''}
+      </div>`;
+    }).join('');
+
+    const redFlags = (src.red_flags || []).slice(0, 3).map(f => `<span style="font-size:11px;color:#f87171">⚑ ${escHtml(f)}</span>`).join('');
+
+    el.innerHTML = `
+      <div class="vf-result">
+        <div class="vf-verdict-banner ${vClass}">${labels[vKey] || vKey.toUpperCase()} — ${escHtml(v.total_claims || 0)} claims · ${escHtml(v.verified_count || 0)} verified · ${escHtml(v.debunked_count || 0)} debunked</div>
+        <div class="vf-trust-row">
+          <span class="vf-trust-label">Source Trust</span>
+          <div class="vf-trust-bar"><div class="vf-trust-fill" style="width:${score}%"></div></div>
+          <span class="vf-trust-score">${score}/100 · ${escHtml(src.trust_level || '')}</span>
+        </div>
+        ${redFlags ? `<div style="display:flex;gap:8px;flex-wrap:wrap">${redFlags}</div>` : ''}
+        ${v.summary ? `<div class="vf-summary">${escHtml(v.summary)}</div>` : ''}
+        ${claims.length ? `<div class="dm-section-label">Claims Analyzed</div><div class="vf-claims-list">${claimsHtml}</div>` : ''}
+      </div>`;
+  }
+
+  function escHtml(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function closeDemo() {
+    delete modal.dataset.open;
+    setTimeout(() => { document.body.style.overflow = ''; }, 320);
+  }
+
+  function animateChat() {
+    const msgs = modalBody.querySelectorAll('.chat-msg');
+    msgs.forEach(msg => {
+      const delay = parseInt(msg.dataset.delay || 0);
+      setTimeout(() => msg.classList.add('visible'), delay);
+    });
+  }
+
+  if (modalClose) modalClose.addEventListener('click', closeDemo);
+  modal.addEventListener('click', e => { if (e.target === modal) closeDemo(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.dataset.open !== undefined) closeDemo(); });
+
+  document.querySelectorAll('[data-demo]').forEach(btn => {
+    btn.addEventListener('click', () => openDemo(btn.dataset.demo));
+  });
 
   /* NAV scroll effect */
   const nav = document.getElementById('nav');
@@ -1871,5 +2493,6 @@
 
 })();
 </script>
+<script src="js/chat.js" defer></script>
 </body>
 </html>

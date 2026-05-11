@@ -466,11 +466,68 @@
 
     /* ── REDUCED MOTION ── */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
+
+    /* ── ADMIN PANEL ── */
+    #admin-overlay {
+      position: fixed; inset: 0; z-index: 800;
+      background: rgba(0,0,0,0); backdrop-filter: blur(0px);
+      display: flex; align-items: flex-start; justify-content: flex-end;
+      pointer-events: none;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
+    #admin-overlay[data-open] { background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: all; }
+    #admin-panel {
+      width: 100%; max-width: 560px; height: 100vh;
+      background: #0a0a0a; border-left: 1px solid rgba(255,255,255,0.1);
+      overflow-y: auto; padding: 28px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    [data-theme="light"] #admin-panel { background: #fafaf9; border-left-color: rgba(0,0,0,0.1); }
+    #admin-overlay[data-open] #admin-panel { transform: none; }
+    .admin-close { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid var(--border); border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-2); font-size: 18px; transition: all 0.2s; }
+    .admin-close:hover { border-color: var(--border-hover); color: var(--text); }
+    .admin-title { font-family: 'Archivo', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    .admin-sub { font-size: 12px; color: var(--text-3); margin-bottom: 28px; }
+    .admin-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .admin-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-3); }
+    .admin-input, .admin-select, .admin-textarea {
+      width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 12px; font-size: 13px; color: var(--text);
+      font-family: 'Space Grotesk', sans-serif; transition: border-color 0.2s; outline: none;
+    }
+    [data-theme="light"] .admin-input, [data-theme="light"] .admin-select, [data-theme="light"] .admin-textarea { background: rgba(0,0,0,0.04); }
+    .admin-input:focus, .admin-select:focus, .admin-textarea:focus { border-color: rgba(59,130,246,0.5); }
+    .admin-input::placeholder, .admin-textarea::placeholder { color: var(--text-3); }
+    .admin-textarea { resize: vertical; min-height: 220px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px; line-height: 1.6; }
+    .admin-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 8px; }
+    .admin-tab { padding: 8px 16px; font-size: 12px; font-weight: 600; color: var(--text-3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; background: none; border-top: none; border-left: none; border-right: none; font-family: 'Space Grotesk', sans-serif; transition: all 0.2s; }
+    .admin-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .admin-preview { min-height: 220px; padding: 14px; border: 1px solid var(--border); border-radius: 8px; font-family: 'Lora', serif; font-size: 14px; line-height: 1.75; color: var(--text-2); display: none; }
+    .admin-preview.active { display: block; }
+    .admin-preview h1,.admin-preview h2,.admin-preview h3 { font-family: 'Archivo', sans-serif; color: var(--text); margin: 1em 0 0.5em; }
+    .admin-preview code { background: rgba(255,255,255,0.08); padding: 2px 5px; border-radius: 4px; font-size: 12px; color: var(--green); }
+    .admin-preview pre { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 8px; padding: 14px; overflow-x: auto; margin: 1em 0; }
+    .admin-preview pre code { background: none; color: var(--text-2); }
+    .admin-btn { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; padding: 11px 20px; border-radius: 10px; cursor: pointer; font-family: 'Space Grotesk', sans-serif; transition: opacity 0.2s; border: none; }
+    .admin-btn.primary { background: var(--grad); color: #fff; }
+    .admin-btn.primary:hover:not(:disabled) { opacity: 0.88; }
+    .admin-btn.primary:disabled { opacity: 0.45; cursor: not-allowed; }
+    .admin-btn.outline { background: transparent; border: 1px solid var(--border); color: var(--text-2); }
+    .admin-btn.outline:hover { border-color: var(--border-hover); color: var(--text); }
+    .admin-msg { font-size: 12px; padding: 10px 14px; border-radius: 8px; margin-top: 10px; }
+    .admin-msg.ok { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+    .admin-msg.err { background: rgba(248,113,113,0.1); color: #f87171; border: 1px solid rgba(248,113,113,0.2); }
+    .admin-msg.info { background: rgba(59,130,246,0.08); color: var(--blue); border: 1px solid rgba(59,130,246,0.2); }
+    .admin-sep { border-top: 1px solid var(--border); margin: 24px 0; }
+    .admin-row { display: flex; gap: 12px; }
+    .admin-row .admin-field { flex: 1; }
+    /* Auth screen */
+    #admin-auth, #admin-form { display: none; }
+    #admin-auth.active, #admin-form.active { display: block; }
+    .admin-trigger-hint { position: fixed; bottom: 20px; right: 20px; font-size: 11px; color: var(--text-3); opacity: 0; pointer-events: none; }
   </style>
 </head>
 <body>
@@ -522,107 +579,24 @@
 <section class="blog-section">
   <div class="container">
 
-    <div class="blog-filters" role="group" aria-label="Filter posts">
-      <button class="filter-btn active">All</button>
-      <button class="filter-btn">ML &amp; Research</button>
-      <button class="filter-btn">Engineering</button>
-      <button class="filter-btn">Africa &amp; AI</button>
-      <button class="filter-btn">Reflections</button>
+    <div class="blog-filters" role="group" aria-label="Filter posts" id="blog-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Research">Research</button>
+      <button class="filter-btn" data-filter="Engineering">Engineering</button>
+      <button class="filter-btn" data-filter="Africa &amp; AI">Africa &amp; AI</button>
+      <button class="filter-btn" data-filter="Reflections">Reflections</button>
     </div>
 
-    <div class="blog-grid">
-
-      <!-- Featured / pinned draft -->
-      <div class="blog-card featured draft" aria-label="Draft post">
-        <div class="blog-card-meta">
-          <span class="blog-date">Coming Soon</span>
-          <span class="blog-draft-badge">Draft</span>
-        </div>
-        <h2 class="blog-title">Building Intellign: How We Compressed Months of Assignment Work into Minutes</h2>
-        <p class="blog-excerpt">A deep dive into the architecture of a decision-intelligence platform — genetic algorithm design, the challenge of encoding domain constraints, human-in-the-loop review systems, and what happens when you deploy optimization to government clients who've never used ML before.</p>
-        <div class="blog-tags">
-          <span class="tag gray">Decision Intelligence</span>
-          <span class="tag gray">Genetic Algorithms</span>
-          <span class="tag gray">Engineering</span>
-        </div>
+    <div class="blog-grid" id="blog-grid" aria-live="polite">
+      <div style="grid-column:1/-1;text-align:center;padding:60px 0;color:var(--text-3);font-size:14px">
+        <div style="width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 14px" aria-hidden="true"></div>
+        Loading posts…
       </div>
-
-      <div class="blog-card draft" aria-label="Draft post">
-        <div class="blog-card-meta">
-          <span class="blog-date">Coming Soon</span>
-          <span class="blog-draft-badge">Draft</span>
-        </div>
-        <h2 class="blog-title">Fine-Tuning TinyLLaMA for African Agricultural Contexts</h2>
-        <p class="blog-excerpt">What changes when you adapt a language model to serve farmers in Nigeria instead of developers in San Francisco? The data problem, domain shift, edge deployment, and why knowledge distillation matters more than model size.</p>
-        <div class="blog-tags">
-          <span class="tag gray">LLMs</span>
-          <span class="tag gray">Africa &amp; AI</span>
-          <span class="tag gray">ML Research</span>
-        </div>
-      </div>
-
-      <div class="blog-card draft" aria-label="Draft post">
-        <div class="blog-card-meta">
-          <span class="blog-date">Coming Soon</span>
-          <span class="blog-draft-badge">Draft</span>
-        </div>
-        <h2 class="blog-title">AfriVTON-Bench: Failure Modes When VTON Models Meet African Textiles</h2>
-        <p class="blog-excerpt">Pattern blurring, motif misalignment, texture drift — what we found when we ran IDM-VTON, OOTDiffusion, and CatVTON on high-frequency African textile patterns. Why frequency-domain analysis reveals things FID and SSIM alone can't.</p>
-        <div class="blog-tags">
-          <span class="tag gray">Computer Vision</span>
-          <span class="tag gray">Research</span>
-          <span class="tag gray">Africa &amp; AI</span>
-        </div>
-      </div>
-
-      <div class="blog-card draft" aria-label="Draft post">
-        <div class="blog-card-meta">
-          <span class="blog-date">Coming Soon</span>
-          <span class="blog-draft-badge">Draft</span>
-        </div>
-        <h2 class="blog-title">Three Times at Deep Learning Indaba: What the Conference Actually Teaches You</h2>
-        <p class="blog-excerpt">Attending DLI in Ghana, then Rwanda — how being in the room with African AI researchers changed how I think about relevance, context, and who research is really for.</p>
-        <div class="blog-tags">
-          <span class="tag gray">Africa &amp; AI</span>
-          <span class="tag gray">Community</span>
-          <span class="tag gray">Reflections</span>
-        </div>
-      </div>
-
-      <div class="blog-card draft" aria-label="Draft post">
-        <div class="blog-card-meta">
-          <span class="blog-date">Coming Soon</span>
-          <span class="blog-draft-badge">Draft</span>
-        </div>
-        <h2 class="blog-title">Synthetic Data at Scale: What I Learned Building the Synthik Pipeline</h2>
-        <p class="blog-excerpt">Parallelized LLM inference, multi-format export, schema enforcement across modalities — the engineering decisions behind a synthetic data system that needs to be auditable, not just fast.</p>
-        <div class="blog-tags">
-          <span class="tag gray">Data Engineering</span>
-          <span class="tag gray">LLMs</span>
-          <span class="tag gray">Engineering</span>
-        </div>
-      </div>
-
-      <div class="blog-card draft" aria-label="Draft post">
-        <div class="blog-card-meta">
-          <span class="blog-date">Coming Soon</span>
-          <span class="blog-draft-badge">Draft</span>
-        </div>
-        <h2 class="blog-title">On Leading a 100-Member AI Chapter at FUNAAB</h2>
-        <p class="blog-excerpt">What I learned building community: the crowdfunding campaign to send members to DLI, running weekly ML workshops, watching people you mentored become leaders themselves.</p>
-        <div class="blog-tags">
-          <span class="tag gray">Community</span>
-          <span class="tag gray">Leadership</span>
-          <span class="tag gray">Reflections</span>
-        </div>
-      </div>
-
     </div>
 
-    <!-- CTA -->
-    <div class="blog-cta">
+    <div class="blog-cta" id="blog-cta" style="display:none">
       <div class="blog-cta-text">
-        <h3>New posts coming soon.</h3>
+        <h3>More writing on the way.</h3>
         <p>I write about ML engineering, research, and building AI from Africa. Follow me on X or connect on LinkedIn to get notified when I publish.</p>
       </div>
       <div class="blog-cta-actions">
@@ -640,68 +614,382 @@
   </div>
 </section>
 
+<!-- ═══ ADMIN PANEL ═══ -->
+<div id="admin-overlay" role="dialog" aria-modal="true" aria-label="Admin panel">
+  <div id="admin-panel">
+    <button class="admin-close" id="admin-close-btn" aria-label="Close admin panel">×</button>
+    <p class="admin-title">Admin</p>
+    <p class="admin-sub">Publish posts directly to GitHub. Trigger: Ctrl+Shift+A</p>
+
+    <!-- Auth screen -->
+    <div id="admin-auth">
+      <div id="admin-setup" style="display:none">
+        <div class="admin-field">
+          <label class="admin-label" for="admin-new-pwd">Set admin password (first time)</label>
+          <input type="password" id="admin-new-pwd" class="admin-input" placeholder="Choose a strong password" autocomplete="new-password">
+        </div>
+        <div class="admin-field">
+          <label class="admin-label" for="admin-new-pwd2">Confirm password</label>
+          <input type="password" id="admin-new-pwd2" class="admin-input" placeholder="Repeat password" autocomplete="new-password">
+        </div>
+        <button class="admin-btn primary" id="admin-set-pwd-btn">Set Password</button>
+      </div>
+      <div id="admin-login">
+        <div class="admin-field">
+          <label class="admin-label" for="admin-pwd">Admin password</label>
+          <input type="password" id="admin-pwd" class="admin-input" placeholder="Enter password" autocomplete="current-password">
+        </div>
+        <button class="admin-btn primary" id="admin-login-btn">Unlock</button>
+      </div>
+      <div id="admin-auth-msg"></div>
+    </div>
+
+    <!-- Publish form -->
+    <div id="admin-form">
+      <div class="admin-row">
+        <div class="admin-field">
+          <label class="admin-label" for="af-category">Category</label>
+          <select id="af-category" class="admin-select">
+            <option>Engineering</option>
+            <option>Research</option>
+            <option>Africa &amp; AI</option>
+            <option>Reflections</option>
+          </select>
+        </div>
+        <div class="admin-field">
+          <label class="admin-label" for="af-readtime">Read time</label>
+          <input type="text" id="af-readtime" class="admin-input" placeholder="e.g. 7 min" value="5 min">
+        </div>
+      </div>
+      <div class="admin-field">
+        <label class="admin-label" for="af-title">Title</label>
+        <input type="text" id="af-title" class="admin-input" placeholder="Post title">
+      </div>
+      <div class="admin-field">
+        <label class="admin-label" for="af-excerpt">Excerpt (shown on blog listing)</label>
+        <textarea id="af-excerpt" class="admin-textarea" style="min-height:72px" placeholder="One–two sentence summary"></textarea>
+      </div>
+      <div class="admin-field">
+        <label class="admin-label" for="af-tags">Tags (comma-separated)</label>
+        <input type="text" id="af-tags" class="admin-input" placeholder="PyTorch, Research, MLOps">
+      </div>
+      <div class="admin-field">
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-tab="write">Write</button>
+          <button class="admin-tab" data-tab="preview">Preview</button>
+        </div>
+        <textarea id="af-content" class="admin-textarea" placeholder="Write in Markdown…"></textarea>
+        <div id="af-preview" class="admin-preview"></div>
+      </div>
+      <div class="admin-sep"></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="admin-btn primary" id="af-publish-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Publish
+        </button>
+        <button class="admin-btn outline" id="af-logout-btn">Lock</button>
+      </div>
+      <div id="admin-form-msg"></div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="container">
     <p>Designed &amp; built by <a href="index.html">Testimony Adekoya</a> · Lagos, Nigeria · 2026</p>
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/marked@9.1.6/marked.min.js"></script>
 <script>
-(function() {
+(function () {
   'use strict';
   const nav = document.getElementById('nav');
-
-  /* Reading progress bar */
   const bar = document.getElementById('reading-progress');
-  function updateProgress() {
-    const scrollTop = window.scrollY;
-    const docH = document.documentElement.scrollHeight - window.innerHeight;
-    const pct = docH > 0 ? Math.min(100, (scrollTop / docH) * 100) : 0;
-    if (bar) { bar.style.width = pct + '%'; bar.setAttribute('aria-valuenow', Math.round(pct)); }
-  }
 
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 24);
-    updateProgress();
+    if (bar) {
+      const dh = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (dh > 0 ? Math.min(100, window.scrollY / dh * 100) : 0) + '%';
+    }
   }, { passive: true });
 
-  /* Dark / Light mode */
   const themeToggle = document.getElementById('theme-toggle');
   const html = document.documentElement;
-  function applyTheme(theme) {
-    if (theme === 'light') {
-      html.setAttribute('data-theme', 'light');
-      themeToggle && themeToggle.setAttribute('aria-label', 'Switch to dark mode');
-    } else {
-      html.removeAttribute('data-theme');
-      themeToggle && themeToggle.setAttribute('aria-label', 'Switch to light mode');
-    }
-    localStorage.setItem('theme', theme);
+  function applyTheme(t) {
+    if (t === 'light') { html.setAttribute('data-theme','light'); themeToggle&&themeToggle.setAttribute('aria-label','Switch to dark mode'); }
+    else { html.removeAttribute('data-theme'); themeToggle&&themeToggle.setAttribute('aria-label','Switch to light mode'); }
+    localStorage.setItem('theme', t);
   }
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-    });
-  }
+  themeToggle&&themeToggle.addEventListener('click', () => applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light'));
 
   const toggle = document.getElementById('nav-toggle');
   const navLinks = document.getElementById('nav-links');
-  toggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', open);
-  });
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }));
+  toggle.addEventListener('click', () => { const o = navLinks.classList.toggle('open'); toggle.setAttribute('aria-expanded', o); });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }));
+
+  /* ═══ DYNAMIC BLOG GRID ═══ */
+  let allPosts = [];
+  let activeFilter = 'all';
+
+  function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function fmtDate(d) { try { return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); } catch(e){return d;} }
+
+  function renderPost(p, featured) {
+    const tags = (p.tags||[]).map(t=>`<span class="tag gray">${esc(t)}</span>`).join('');
+    return `<a class="blog-card${featured?' featured':''}" href="post.html?post=${esc(p.id)}" aria-label="${esc(p.title)}">
+      <div class="blog-card-meta">
+        <span class="blog-date">${esc(fmtDate(p.date))}</span>
+        <span class="blog-read">${esc(p.readTime||'')}</span>
+      </div>
+      <h2 class="blog-title">${esc(p.title)}</h2>
+      <p class="blog-excerpt">${esc(p.excerpt||'')}</p>
+      <div class="blog-tags">${tags}</div>
+    </a>`;
+  }
+
+  function renderGrid(filter) {
+    const grid = document.getElementById('blog-grid');
+    let posts = allPosts.filter(p => p.published !== false);
+    if (filter && filter !== 'all') posts = posts.filter(p => p.category === filter);
+    if (!posts.length) { grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 0;color:var(--text-3);font-size:14px">No posts in this category yet.</div>'; return; }
+    const featured = posts.find(p => p.featured);
+    const rest = posts.filter(p => !p.featured || filter !== 'all');
+    let html = '';
+    if (featured && filter === 'all') html += renderPost(featured, true);
+    const others = filter === 'all' ? posts.filter(p => !p.featured) : posts;
+    others.forEach(p => { html += renderPost(p, false); });
+    grid.innerHTML = html;
+  }
+
+  // localhost → local dev server; production → stored Railway URL
+  function _blogApiBase() {
+    const isLocalhost = ['localhost', '127.0.0.1'].includes(location.hostname);
+    if (isLocalhost) {
+      console.log('🔧 LOCALHOST detected — using local dev API');
+      return 'http://127.0.0.1:8000';
+    }
+    const storedUrl = (localStorage.getItem('_blog_api') || '').replace(/\/$/, '');
+    console.log('🌐 PRODUCTION — using Railway URL:', storedUrl || '(not set)');
+    return storedUrl;
+  }
+
+  async function loadPosts() {
+    const apiUrl = _blogApiBase();
+    console.log('📡 Attempting to load posts from:', apiUrl || '(fallback to static file)');
+    try {
+      if (apiUrl) {
+        console.log(`✅ Fetching from API: ${apiUrl}/posts`);
+        const res = await fetch(`${apiUrl}/posts`);
+        if (res.ok) { 
+          allPosts = await res.json(); 
+          console.log(`✅ Loaded ${allPosts.length} posts from API`);
+          renderGrid('all'); 
+          document.getElementById('blog-cta').style.display = ''; 
+          return; 
+        }
+        console.warn(`⚠️ API returned ${res.status} — falling back to static file`);
+      }
+      // Fallback: static file
+      console.log('📄 Using static posts.json');
+      const res = await fetch('data/posts.json');
+      allPosts = await res.json();
+      console.log(`✅ Loaded ${allPosts.length} posts from static file`);
+      renderGrid('all');
+      document.getElementById('blog-cta').style.display = '';
+    } catch(e) {
+      console.error('❌ Error loading posts:', e);
+      document.getElementById('blog-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 0;color:var(--text-3);font-size:14px">Failed to load posts.</div>';
+    }
+  }
+  loadPosts();
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      activeFilter = btn.dataset.filter || 'all';
+      renderGrid(activeFilter);
     });
   });
+
+  /* ═══ ADMIN PANEL ═══ */
+  // Auto-detects localhost vs production — no manual config needed locally
+  const API_URL = _blogApiBase();
+
+  let sessionToken = sessionStorage.getItem('_blog_token') || '';
+
+  const adminOverlay = document.getElementById('admin-overlay');
+  const adminAuth = document.getElementById('admin-auth');
+  const adminForm = document.getElementById('admin-form');
+  const adminSetup = document.getElementById('admin-setup');
+  const adminLogin = document.getElementById('admin-login');
+
+  function openAdmin() {
+    if (!API_URL) {
+      console.warn('⚠️ No API URL configured for admin panel');
+      const url = prompt('Enter your blog API URL (e.g. https://blog-api.up.railway.app):');
+      if (!url) return;
+      localStorage.setItem('_blog_api', url.trim());
+      console.log('✅ API URL saved to localStorage:', url.trim());
+      location.reload();
+      return;
+    }
+    console.log('🔓 Opening admin panel with API:', API_URL);
+    adminOverlay.setAttribute('data-open', '');
+    document.body.style.overflow = 'hidden';
+    if (sessionToken) {
+      unlockForm();
+    } else {
+      adminAuth.classList.add('active');
+      adminForm.classList.remove('active');
+      adminSetup.style.display = 'none';
+      adminLogin.style.display = 'block';
+    }
+  }
+
+  function closeAdmin() {
+    delete adminOverlay.dataset.open;
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('admin-close-btn').addEventListener('click', closeAdmin);
+  adminOverlay.addEventListener('click', e => { if (e.target === adminOverlay) closeAdmin(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && adminOverlay.dataset.open !== undefined) closeAdmin();
+    if (e.ctrlKey && e.shiftKey && e.key === 'A') { e.preventDefault(); openAdmin(); }
+  });
+
+  if (location.hash === '#admin') openAdmin();
+
+  function setAuthMsg(msg, type) {
+    document.getElementById('admin-auth-msg').innerHTML = msg ? `<div class="admin-msg ${type}">${esc(msg)}</div>` : '';
+  }
+
+  // Set password — handled server-side on first POST /auth
+  document.getElementById('admin-set-pwd-btn').addEventListener('click', async () => {
+    const p1 = document.getElementById('admin-new-pwd').value;
+    const p2 = document.getElementById('admin-new-pwd2').value;
+    if (!p1) { setAuthMsg('Enter a password.', 'err'); return; }
+    if (p1 !== p2) { setAuthMsg('Passwords do not match.', 'err'); return; }
+    if (p1.length < 8) { setAuthMsg('Minimum 8 characters.', 'err'); return; }
+    await doAuth(p1);
+  });
+
+  // Login
+  document.getElementById('admin-login-btn').addEventListener('click', async () => {
+    await doAuth(document.getElementById('admin-pwd').value);
+  });
+  document.getElementById('admin-pwd').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('admin-login-btn').click();
+  });
+
+  async function doAuth(password) {
+    setAuthMsg('Verifying…', 'info');
+    try {
+      const res = await fetch(`${API_URL}/auth`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
+      sessionToken = data.token;
+      sessionStorage.setItem('_blog_token', sessionToken);
+      if (data.first_time) setAuthMsg('Password set — you are now logged in.', 'ok');
+      setTimeout(unlockForm, data.first_time ? 700 : 0);
+    } catch (e) {
+      setAuthMsg(e.message, 'err');
+    }
+  }
+
+  function unlockForm() {
+    adminAuth.classList.remove('active');
+    adminForm.classList.add('active');
+  }
+
+  // Lock
+  document.getElementById('af-logout-btn').addEventListener('click', async () => {
+    if (sessionToken) {
+      fetch(`${API_URL}/auth`, { method: 'DELETE', headers: { 'x-session-token': sessionToken } }).catch(() => {});
+      sessionToken = '';
+      sessionStorage.removeItem('_blog_token');
+    }
+    adminForm.classList.remove('active');
+    adminAuth.classList.add('active');
+  });
+
+  // Tabs
+  document.querySelectorAll('.admin-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const ta = document.getElementById('af-content');
+      const prev = document.getElementById('af-preview');
+      if (tab.dataset.tab === 'preview') {
+        prev.innerHTML = typeof marked !== 'undefined' ? marked.parse(ta.value || '') : ta.value;
+        prev.classList.add('active');
+        ta.style.display = 'none';
+      } else {
+        prev.classList.remove('active');
+        ta.style.display = '';
+      }
+    });
+  });
+
+  // Publish — calls backend, no PAT in browser
+  document.getElementById('af-publish-btn').addEventListener('click', async () => {
+    const btn = document.getElementById('af-publish-btn');
+    const msgEl = document.getElementById('admin-form-msg');
+
+    const title   = document.getElementById('af-title').value.trim();
+    const excerpt = document.getElementById('af-excerpt').value.trim();
+    const content = document.getElementById('af-content').value.trim();
+    const category = document.getElementById('af-category').value;
+    const readTime = document.getElementById('af-readtime').value.trim();
+    const tagsRaw  = document.getElementById('af-tags').value.trim();
+
+    if (!title || !excerpt || !content) { msgEl.innerHTML = '<div class="admin-msg err">Title, excerpt, and content are required.</div>'; return; }
+    if (!sessionToken) { msgEl.innerHTML = '<div class="admin-msg err">Not authenticated — please lock and re-login.</div>'; return; }
+
+    const slug  = title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+    const today = new Date().toISOString().slice(0,10);
+    const tags  = tagsRaw ? tagsRaw.split(',').map(t=>t.trim()).filter(Boolean) : [];
+
+    const newPost = { id: slug, title, date: today, readTime: readTime||'5 min', category, featured: false, tags, excerpt, content, published: true };
+
+    btn.disabled = true;
+    btn.textContent = 'Publishing…';
+    msgEl.innerHTML = '<div class="admin-msg info">Sending to blog API…</div>';
+
+    try {
+      const res = await fetch(`${API_URL}/posts`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-session-token': sessionToken },
+        body: JSON.stringify(newPost),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || `HTTP ${res.status}`);
+
+      const ghNote = data.github_committed ? ' GitHub also updated.' : ' (GitHub commit pending — check API logs.)';
+      msgEl.innerHTML = `<div class="admin-msg ok">Published!${ghNote}</div>`;
+      ['af-title','af-excerpt','af-content','af-tags'].forEach(id => { document.getElementById(id).value=''; });
+      allPosts = [newPost, ...allPosts];
+      renderGrid(activeFilter);
+
+    } catch(e) {
+      // Session might have expired
+      if (e.message.includes('401')) { sessionToken=''; sessionStorage.removeItem('_blog_token'); }
+      msgEl.innerHTML = `<div class="admin-msg err">${esc(e.message)}</div>`;
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Publish';
+    }
+  });
+
 })();
 </script>
+<script src="js/chat.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light')})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AfriVTON-Bench Case Study — Testimony Adekoya</title>
+  <meta name="description" content="AfriVTON-Bench: Evaluating VTON model robustness on African textile patterns — case study by Testimony Adekoya & Shiloh Oni.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d; --bg-card: #141414; --bg-card-hover: #1c1c1c;
+      --border: rgba(255,255,255,0.07); --border-hover: rgba(255,255,255,0.18);
+      --text: #f0f0f0; --text-2: #a3a3a3; --text-3: #5a5a5a;
+      --blue: #3b82f6; --green: #10b981; --amber: #f59e0b;
+      --grad: linear-gradient(135deg, #3b82f6, #10b981);
+    }
+    [data-theme="light"] {
+      --bg: #f5f5f4; --bg-card: #ffffff; --bg-card-hover: #eeeeec;
+      --border: rgba(0,0,0,0.08); --border-hover: rgba(0,0,0,0.22);
+      --text: #111111; --text-2: #444444; --text-3: #888888;
+    }
+    [data-theme="light"] .nav-inner { background: rgba(245,245,244,0.88); }
+    [data-theme="light"] #nav.scrolled .nav-inner { background: rgba(245,245,244,0.97); border-color: rgba(0,0,0,0.1); }
+    [data-theme="light"] .nav-links { background: rgba(245,245,244,0.97); }
+    [data-theme="light"] .nav-toggle span { background: var(--text); }
+    [data-theme="light"] .case-title { background: linear-gradient(160deg,#111 30%,#555 100%); -webkit-background-clip:text; background-clip:text; }
+    [data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+
+    html { scroll-behavior: smooth; }
+    body { background:var(--bg); color:var(--text); font-family:'Space Grotesk',sans-serif; font-size:16px; line-height:1.6; overflow-x:hidden; }
+    .container { max-width:860px; margin:0 auto; padding:0 24px; }
+    .container-wide { max-width:1100px; margin:0 auto; padding:0 24px; }
+
+    .label { font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green); margin-bottom:10px; }
+
+    .tag { display:inline-block; font-size:11px; font-weight:500; padding:3px 9px; border-radius:6px; background:rgba(59,130,246,0.1); color:var(--blue); border:1px solid rgba(59,130,246,0.2); }
+    .tag.green { background:rgba(16,185,129,0.1); color:var(--green); border-color:rgba(16,185,129,0.2); }
+    .tag.amber { background:rgba(245,158,11,0.1); color:var(--amber); border-color:rgba(245,158,11,0.2); }
+    .tag.gray  { background:rgba(255,255,255,0.04); color:var(--text-2); border-color:var(--border); }
+    [data-theme="light"] .tag.gray { background:rgba(0,0,0,0.04); }
+
+    /* NAV */
+    #nav { position:fixed; top:0; left:0; right:0; z-index:100; padding:16px 0; transition:padding 0.3s; }
+    #nav.scrolled { padding:10px 0; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; background:rgba(14,14,14,0.78); backdrop-filter:blur(28px); -webkit-backdrop-filter:blur(28px); border:1px solid rgba(255,255,255,0.07); border-radius:100px; padding:7px 7px 7px 22px; transition:border-color 0.3s,background 0.3s; }
+    #nav.scrolled .nav-inner { border-color:rgba(255,255,255,0.13); background:rgba(10,10,10,0.96); }
+    .nav-brand { font-family:'Archivo',sans-serif; font-size:17px; font-weight:700; color:var(--text); text-decoration:none; letter-spacing:-0.02em; display:flex; align-items:center; gap:10px; }
+    .nav-avatar { width:30px; height:30px; border-radius:50%; object-fit:cover; object-position:center 15%; flex-shrink:0; border:1.5px solid rgba(255,255,255,0.12); transition:border-color 0.2s; }
+    .nav-brand:hover .nav-avatar { border-color:rgba(59,130,246,0.5); }
+    .nav-brand span { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+    .nav-links a { font-size:14px; font-weight:500; color:var(--text-2); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-cta { font-size:13px; font-weight:600; padding:8px 18px; border-radius:100px; background:var(--grad); color:#fff !important; text-decoration:none; transition:opacity 0.2s; }
+    .nav-cta:hover { opacity:0.85; }
+    .theme-toggle { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%; background:transparent; border:1px solid var(--border); color:var(--text-2); cursor:pointer; transition:border-color 0.2s,color 0.2s; flex-shrink:0; margin-left:4px; }
+    .theme-toggle:hover { border-color:var(--border-hover); color:var(--text); }
+    .theme-toggle svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .icon-moon { display:none; }
+    [data-theme="light"] .icon-sun { display:none; }
+    [data-theme="light"] .icon-moon { display:block; }
+    .nav-toggle { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+    .nav-toggle span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all 0.3s; }
+
+    .divider { height:1px; background:linear-gradient(90deg,transparent 0%,var(--border) 30%,var(--border) 70%,transparent 100%); }
+
+    /* HERO */
+    .case-hero { padding:160px 0 72px; position:relative; overflow:hidden; }
+    .case-hero::before { content:''; position:absolute; top:-80px; right:-160px; width:540px; height:540px; border-radius:50%; background:radial-gradient(circle,rgba(16,185,129,0.07) 0%,transparent 70%); pointer-events:none; }
+    .back-link { display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:500; color:var(--text-3); text-decoration:none; margin-bottom:32px; transition:color 0.2s; }
+    .back-link:hover { color:var(--text-2); }
+    .back-link svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .case-title { font-family:'Archivo',sans-serif; font-size:clamp(30px,5vw,52px); font-weight:800; line-height:1.05; letter-spacing:-0.03em; margin-bottom:20px; background:linear-gradient(160deg,#ffffff 30%,#888888 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .case-meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+    .case-meta span { font-size:13px; color:var(--text-3); }
+    .case-meta-sep { color:var(--text-3); }
+    .case-tags { display:flex; gap:7px; flex-wrap:wrap; margin-bottom:40px; }
+    .hero-stat-row { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:48px; }
+    .hero-stat { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:16px 12px; text-align:center; transition:border-color 0.2s; }
+    .hero-stat:hover { border-color:var(--border-hover); }
+    .hero-stat-num { font-family:'Archivo',sans-serif; font-size:22px; font-weight:800; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:4px; }
+    .hero-stat-label { font-size:10px; color:var(--text-3); font-weight:500; line-height:1.3; }
+    .dli-banner { display:inline-flex; align-items:center; gap:10px; padding:12px 20px; border-radius:12px; background:rgba(16,185,129,0.07); border:1px solid rgba(16,185,129,0.2); margin-top:24px; }
+    .dli-banner svg { width:15px; height:15px; stroke:var(--green); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+    .dli-banner span { font-size:13px; font-weight:600; color:var(--green); }
+    .case-links { display:flex; gap:12px; flex-wrap:wrap; margin-top:12px; }
+    .case-link-btn { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; padding:10px 20px; border-radius:100px; text-decoration:none; transition:opacity 0.2s,transform 0.2s; }
+    .case-link-btn:hover { opacity:0.82; transform:translateY(-1px); }
+    .case-link-btn.primary { background:var(--grad); color:#fff; }
+    .case-link-btn.outline { border:1px solid var(--border); color:var(--text-2); background:transparent; }
+    .case-link-btn.outline:hover { border-color:var(--border-hover); color:var(--text); }
+    .case-link-btn svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+
+    /* BODY */
+    .case-body { padding:72px 0 120px; }
+    .case-section { margin-bottom:80px; }
+    .case-section:last-child { margin-bottom:0; }
+    .section-head { display:flex; align-items:center; gap:14px; margin-bottom:32px; }
+    .section-num { font-size:10px; font-weight:700; color:var(--text-3); letter-spacing:0.12em; }
+    .section-title { font-family:'Archivo',sans-serif; font-size:22px; font-weight:800; letter-spacing:-0.02em; }
+    .case-body p { font-size:15px; color:var(--text-2); line-height:1.85; margin-bottom:18px; }
+    .case-body p:last-child { margin-bottom:0; }
+    .case-body p strong { color:var(--text); font-weight:600; }
+
+    /* COVERAGE MAP — text-based grid */
+    .country-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0; }
+    .country-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; padding:16px; transition:border-color 0.2s; }
+    .country-card:hover { border-color:var(--border-hover); }
+    .country-name { font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px; }
+    .country-garments { font-size:12px; color:var(--text-3); line-height:1.55; }
+
+    /* PIPELINE DIAGRAM */
+    .pipeline { display:flex; align-items:center; justify-content:center; gap:0; flex-wrap:nowrap; margin:32px 0; overflow-x:auto; padding:32px; background:var(--bg-card); border:1px solid var(--border); border-radius:20px; }
+    .pipeline-step { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+    .pipeline-node { background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:10px; padding:12px 16px; text-align:center; min-width:110px; }
+    [data-theme="light"] .pipeline-node { background:rgba(0,0,0,0.03); }
+    .pipeline-node.blue { background:rgba(59,130,246,0.08); border-color:rgba(59,130,246,0.25); }
+    .pipeline-node.green { background:rgba(16,185,129,0.08); border-color:rgba(16,185,129,0.25); }
+    .pipeline-node.amber { background:rgba(245,158,11,0.08); border-color:rgba(245,158,11,0.25); }
+    .pipeline-node-num { font-size:9px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); margin-bottom:4px; }
+    .pipeline-node-label { font-size:11px; font-weight:700; color:var(--text); line-height:1.3; }
+    .pipeline-node-sub { font-size:10px; color:var(--text-3); margin-top:2px; line-height:1.3; }
+    .pipeline-arrow { color:var(--text-3); padding:0 8px; font-size:16px; flex-shrink:0; }
+
+    /* RESULTS TABLE */
+    .results-table-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:14px; margin:24px 0; }
+    .results-table { width:100%; border-collapse:collapse; font-size:13px; }
+    .results-table th { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-3); padding:14px 20px; text-align:left; border-bottom:1px solid var(--border); white-space:nowrap; }
+    .results-table th .metric-hint { font-size:9px; font-weight:400; color:var(--text-3); display:block; letter-spacing:0; text-transform:none; margin-top:1px; }
+    .results-table td { padding:14px 20px; color:var(--text-2); border-bottom:1px solid var(--border); vertical-align:middle; }
+    .results-table tr:last-child td { border-bottom:none; }
+    .metric-val { font-variant-numeric:tabular-nums; font-weight:600; color:var(--text); }
+    .metric-val.bad { color:#f87171; }
+    .metric-val.ratio { color:var(--amber); }
+    .model-label { font-weight:700; color:var(--text); }
+
+    /* FAILURE MODES */
+    .failure-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:24px 0; }
+    .failure-card { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:24px; border-top:3px solid; transition:transform 0.2s; }
+    .failure-card:hover { transform:translateY(-2px); }
+    .failure-card.f1 { border-top-color:rgba(248,113,113,0.8); }
+    .failure-card.f2 { border-top-color:rgba(245,158,11,0.8); }
+    .failure-card.f3 { border-top-color:rgba(139,92,246,0.8); }
+    .failure-icon { font-size:22px; margin-bottom:10px; }
+    .failure-name { font-size:13px; font-weight:700; color:var(--text); margin-bottom:6px; }
+    .failure-body { font-size:12px; color:var(--text-2); line-height:1.65; }
+
+    /* CALLOUT */
+    .callout { border-left:3px solid var(--blue); background:rgba(59,130,246,0.04); border-radius:0 12px 12px 0; padding:16px 20px; margin:24px 0; }
+    .callout.green { border-left-color:var(--green); background:rgba(16,185,129,0.04); }
+    .callout.amber { border-left-color:var(--amber); background:rgba(245,158,11,0.04); }
+    .callout p { font-size:14px; color:var(--text-2); line-height:1.75; margin:0; }
+    .callout p strong { color:var(--text); }
+
+    /* DATASET FIGURE */
+    .figure-wrap { margin:28px 0; border-radius:16px; overflow:hidden; border:1px solid var(--border); }
+    .figure-wrap img { width:100%; display:block; }
+    .figure-caption { padding:12px 16px; font-size:12px; color:var(--text-3); background:var(--bg-card); line-height:1.5; }
+
+    /* FOOTER */
+    footer { border-top:1px solid var(--border); padding:32px 0; text-align:center; color:var(--text-3); font-size:13px; }
+    footer a { color:var(--text-3); text-decoration:none; }
+    footer a:hover { color:var(--text-2); }
+
+    :focus-visible { outline:2px solid var(--blue); outline-offset:3px; border-radius:4px; }
+    ::-webkit-scrollbar { width:5px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.1); border-radius:4px; }
+
+    @media (max-width:1024px) { .hero-stat-row { grid-template-columns:repeat(3,1fr); } .failure-grid { grid-template-columns:1fr 1fr; } }
+    @media (max-width:640px) {
+      .nav-links { display:none; flex-direction:column; position:fixed; top:61px; left:0; right:0; background:rgba(13,13,13,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); padding:24px; gap:20px; border-bottom:1px solid var(--border); z-index:99; }
+      .nav-links.open { display:flex; } .nav-toggle { display:flex; } .nav-inner { border-radius:16px; padding:10px 10px 10px 16px; }
+      .country-grid { grid-template-columns:1fr 1fr; } .failure-grid { grid-template-columns:1fr; } .hero-stat-row { grid-template-columns:repeat(2,1fr); }
+      .pipeline { gap:0; padding:20px 16px; }
+    }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
+  </style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Primary navigation">
+  <div class="container-wide">
+    <div class="nav-inner">
+      <a class="nav-brand" href="../index.html">
+        <img src="../img/_DSC4243.JPG" alt="" class="nav-avatar" aria-hidden="true" loading="eager">
+        Testimony <span>Adekoya</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a class="nav-cta" href="../Testimony_Adekoya_Resume.pdf" target="_blank" rel="noopener">Download CV</a></li>
+      </ul>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="case-hero">
+  <div class="container">
+    <a href="../index.html#projects" class="back-link">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Projects
+    </a>
+    <div class="label">Case Study · Research · Computer Vision</div>
+    <h1 class="case-title">AfriVTON-Bench: Evaluating VTON Model Robustness on African Textile Patterns</h1>
+    <div class="case-meta">
+      <span>Testimony Adekoya &amp; Shiloh Oni</span>
+      <span class="case-meta-sep">·</span>
+      <span>Submitted Deep Learning Indaba 2026</span>
+      <span class="case-meta-sep">·</span>
+      <span>Under Review</span>
+    </div>
+    <div class="case-tags">
+      <span class="tag">PyTorch</span>
+      <span class="tag">HF Diffusers</span>
+      <span class="tag">Computer Vision</span>
+      <span class="tag">Generative Models</span>
+      <span class="tag gray">Cultural Bias</span>
+      <span class="tag gray">Benchmarking</span>
+      <span class="tag green">DLI 2026</span>
+    </div>
+    <div class="case-links">
+      <a href="https://github.com/dev-tyta" class="case-link-btn primary" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="dli-banner" role="note">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Submitted to Deep Learning Indaba 2026 · Double-blind review · Under review</span>
+    </div>
+    <div class="hero-stat-row" role="list" aria-label="Key metrics">
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">111</div><div class="hero-stat-label">African Garment Images</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">16</div><div class="hero-stat-label">Garment Categories</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">7</div><div class="hero-stat-label">African Countries</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">1,012</div><div class="hero-stat-label">Person-Garment Pairs</div></div>
+      <div class="hero-stat" role="listitem"><div class="hero-stat-num">2</div><div class="hero-stat-label">VTON Models Tested</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<main class="case-body">
+  <div class="container">
+
+    <!-- PROBLEM -->
+    <section class="case-section" aria-label="Problem">
+      <div class="section-head"><span class="section-num">01 /</span><h2 class="section-title">The Problem</h2></div>
+      <p>
+        Virtual Try-On (VTON) systems have advanced significantly — diffusion-based models like OOTDiffusion, IDM-VTON, CatVTON, and FitDiT now produce photorealistic try-on results on standard benchmarks. But those benchmarks — <strong>VITON-HD</strong> (13,000 pairs) and <strong>DressCode</strong> (53,000 pairs) — share a critical flaw: they were curated entirely from Western fashion e-commerce platforms. Garments are overwhelmingly Western in silhouette and lightly textured. Subjects cluster in the lighter half of perceptual skin tone scales.
+      </p>
+      <p>
+        African textile garments pose a <strong>structurally distinct challenge</strong> for existing VTON pipelines. Fabrics like Ankara, Kente, Adire, and Aso-Oke carry high-frequency repeating motifs with strong geometric regularity — properties that expose known failure modes in both spatial warping and diffusion synthesis stages. Traditional garments including Agbada, Boubou, and Dashiki have voluminous non-fitted silhouettes that differ substantially from the body-congruent clothing dominant in existing benchmarks.
+      </p>
+      <div class="callout amber">
+        <p><strong>The gap:</strong> Fewer than 0.06% of computer vision papers address African-specific visual domains. No existing VTON work examines model behaviour on African textiles, garment structures, or the skin tone distribution of African subjects.</p>
+      </div>
+    </section>
+
+    <!-- DATASET -->
+    <section class="case-section" aria-label="Dataset construction">
+      <div class="section-head"><span class="section-num">02 /</span><h2 class="section-title">Dataset Construction</h2></div>
+      <p>
+        AfriVTON-Bench curates <strong>111 African garment images spanning 16 categories across 7 countries and 5 geographic sub-regions</strong>. Images were sourced via web scraping (DuckDuckGo, Wikimedia Commons, Bing using iCrawler) supplemented by targeted manual curation. A <strong>Western control set of 50 garments</strong> drawn from VITON-HD enables direct African vs. Western comparison on the same inference pipeline.
+      </p>
+
+      <div class="country-grid" role="list" aria-label="Countries and garment types">
+        <div class="country-card" role="listitem"><div class="country-name">🇳🇬 Nigeria</div><div class="country-garments">Ankara · Agbada · Aso-Oke · Lace</div></div>
+        <div class="country-card" role="listitem"><div class="country-name">🇬🇭 Ghana</div><div class="country-garments">Kente · Batakari</div></div>
+        <div class="country-card" role="listitem"><div class="country-name">🇸🇳 Senegal</div><div class="country-garments">Boubou · Kaftan</div></div>
+        <div class="country-card" role="listitem"><div class="country-name">🇪🇹 Ethiopia</div><div class="country-garments">Habesha Kemis · Netela</div></div>
+        <div class="country-card" role="listitem"><div class="country-name">🇰🇪 Kenya</div><div class="country-garments">Kikoi · Shuka</div></div>
+        <div class="country-card" role="listitem"><div class="country-name">🇿🇦 South Africa</div><div class="country-garments">Shweshwe</div></div>
+        <div class="country-card" role="listitem"><div class="country-name">🇲🇦 Morocco</div><div class="country-garments">Kaftan · Djellaba</div></div>
+      </div>
+
+      <p>
+        <strong>15 person model images</strong> were sourced targeting diverse African subjects across the full <strong>Monk Skin Tone (MST) scale</strong> — predominantly Monk 7 — with gender labels for future stratified analysis. All garments were annotated with country of origin, geographic region, garment type, visual complexity tier, pattern type, and drape type via Gemini-based classification and manual verification.
+      </p>
+
+      <div class="figure-wrap">
+        <img src="../_data/fig_garments.png" alt="Representative samples from 16 African garment categories across 7 countries" loading="lazy">
+        <div class="figure-caption">Representative samples from the 16 African garment categories. Left to right: Ethiopia Habesha Kemis, Ethiopia Netela, Ghana Batakari, Ghana Kente, Kenya Kikoi, Kenya Shuka, Morocco Djellaba, Morocco Kaftan, Nigeria Agbada, Nigeria Ankara. All images preprocessed to 768×1024.</div>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section class="case-section" aria-label="Benchmark pipeline">
+      <div class="section-head"><span class="section-num">03 /</span><h2 class="section-title">Benchmark Pipeline</h2></div>
+
+      <div class="pipeline" role="img" aria-label="AfriVTON-Bench pipeline: collection → preprocessing → pairing → inference → evaluation">
+        <div class="pipeline-step">
+          <div class="pipeline-node blue">
+            <div class="pipeline-node-num">Step 1</div>
+            <div class="pipeline-node-label">Data Collection</div>
+            <div class="pipeline-node-sub">Web scraping + manual curation · 111 garments</div>
+          </div>
+        </div>
+        <div class="pipeline-arrow" aria-hidden="true">→</div>
+        <div class="pipeline-step">
+          <div class="pipeline-node blue">
+            <div class="pipeline-node-num">Step 2</div>
+            <div class="pipeline-node-label">Preprocessing</div>
+            <div class="pipeline-node-sub">rembg background removal · 768×1024 · Face blur pipeline</div>
+          </div>
+        </div>
+        <div class="pipeline-arrow" aria-hidden="true">→</div>
+        <div class="pipeline-step">
+          <div class="pipeline-node blue">
+            <div class="pipeline-node-num">Step 3</div>
+            <div class="pipeline-node-label">Pairing</div>
+            <div class="pipeline-node-sub">Gender-compatibility filtering · 1,012 pairs</div>
+          </div>
+        </div>
+        <div class="pipeline-arrow" aria-hidden="true">→</div>
+        <div class="pipeline-step">
+          <div class="pipeline-node green">
+            <div class="pipeline-node-num">Step 4</div>
+            <div class="pipeline-node-label">Zero-shot Inference</div>
+            <div class="pipeline-node-sub">FASHN-VTON + LEFFA</div>
+          </div>
+        </div>
+        <div class="pipeline-arrow" aria-hidden="true">→</div>
+        <div class="pipeline-step">
+          <div class="pipeline-node green">
+            <div class="pipeline-node-num">Step 5</div>
+            <div class="pipeline-node-label">Evaluation</div>
+            <div class="pipeline-node-sub">gLPIPS · gSSIM · DISTS · pLPIPS · g/p Ratio</div>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        A <strong>cascading face-blur pipeline</strong> protects personally identifiable information from scraped images: MediaPipe Face Detection (min confidence 0.35, tuned for darker skin tones) → YuNet → Haar Cascade as fallback. A two-pass strategy applies detection on the full image and on a 2× upscaled top-half crop to catch small faces common in full-body fashion photography. Of 126 images evaluated by the automated QC pass, 115 passed.
+      </p>
+      <p>
+        <strong>FASHN-VTON</strong> uses the <code>fashn-vton-1.5</code> checkpoint (50 denoising timesteps, guidance scale 2.5, seed 42). <strong>LEFFA</strong> uses spatial warping within the attention mechanism of a diffusion model — a fundamentally different design paradigm. Both models are evaluated zero-shot with no African-specific fine-tuning.
+      </p>
+    </section>
+
+    <!-- METRICS -->
+    <section class="case-section" aria-label="Evaluation metrics">
+      <div class="section-head"><span class="section-num">04 /</span><h2 class="section-title">Evaluation Metrics</h2></div>
+      <p>Four perceptual metrics computed at image level on 768×1024 images using PyTorch with CUDA acceleration:</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+        <li style="font-size:14px;color:var(--text-2);padding-left:20px;border-left:2px solid var(--border)"><strong style="color:var(--text);">gLPIPS</strong> (Garment LPIPS) — Learned Perceptual Image Patch Similarity between try-on output and reference garment. Lower = better garment texture preservation.</li>
+        <li style="font-size:14px;color:var(--text-2);padding-left:20px;border-left:2px solid var(--border)"><strong style="color:var(--text);">gSSIM</strong> (Garment SSIM) — Structural Similarity Index between try-on result and garment image. Higher = better structural correspondence.</li>
+        <li style="font-size:14px;color:var(--text-2);padding-left:20px;border-left:2px solid var(--border)"><strong style="color:var(--text);">DISTS</strong> — Texture-sensitive distance metric, more sensitive to fine-grained pattern complexity than SSIM.</li>
+        <li style="font-size:14px;color:var(--text-2);padding-left:20px;border-left:2px solid var(--border)"><strong style="color:var(--text);">pLPIPS</strong> (Person LPIPS) — Perceptual similarity between try-on output and original person image. Quantifies preservation of body, pose, and non-garment appearance.</li>
+      </ul>
+      <p>The <strong>g/p Ratio</strong> (gLPIPS / pLPIPS) is a model-agnostic index of garment-specific failure. A high ratio means the model reconstructs person identity far more faithfully than garment texture — evidence that failure is concentrated in the garment region.</p>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="case-section" aria-label="Results">
+      <div class="section-head"><span class="section-num">05 /</span><h2 class="section-title">Results</h2></div>
+
+      <div class="results-table-wrap" role="table" aria-label="Aggregate performance metrics">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th scope="col">Model</th>
+              <th scope="col">gLPIPS ↓<span class="metric-hint">garment texture</span></th>
+              <th scope="col">gSSIM ↑<span class="metric-hint">garment structure</span></th>
+              <th scope="col">DISTS ↓<span class="metric-hint">texture fidelity</span></th>
+              <th scope="col">pLPIPS ↓<span class="metric-hint">person identity</span></th>
+              <th scope="col">g/p Ratio<span class="metric-hint">garment failure index</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="model-label">FASHN-VTON</span><br><span style="font-size:11px;color:var(--text-3);">Stable Diffusion + DWPose</span></td>
+              <td><span class="metric-val bad">0.650</span></td>
+              <td><span class="metric-val">0.586</span></td>
+              <td><span class="metric-val bad">0.312</span></td>
+              <td><span class="metric-val">0.179</span></td>
+              <td><span class="metric-val ratio">3.63×</span></td>
+            </tr>
+            <tr>
+              <td><span class="model-label">LEFFA</span><br><span style="font-size:11px;color:var(--text-3);">Flow-field attention</span></td>
+              <td><span class="metric-val bad">0.664</span></td>
+              <td><span class="metric-val">0.577</span></td>
+              <td><span class="metric-val bad">0.312</span></td>
+              <td><span class="metric-val">0.156</span></td>
+              <td><span class="metric-val ratio">4.27×</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
+        <p><strong>Key finding:</strong> Both models preserve person identity 3.63–4.27× more faithfully than garment texture. This is not a general synthesis quality problem — both render person body and pose at reasonable perceptual fidelity. The failure is concentrated specifically in the garment region, pointing toward the shared Western training distribution as the root cause rather than any particular design choice.</p>
+      </div>
+
+      <p>
+        African garments score <strong>9.4–9.6 percentage points lower in gSSIM</strong> than Western controls across both models, with Kente (gSSIM = 0.460) and Ankara (gSSIM = 0.474) degrading most severely. Despite representing fundamentally different design paradigms, FASHN-VTON and LEFFA converge on near-identical garment distortion (gLPIPS 0.650 vs 0.664, DISTS₀ 0.312 vs 0.312).
+      </p>
+
+      <div class="figure-wrap">
+        <img src="../_data/comparison_grid_page4.jpg" alt="Side-by-side comparison of VTON outputs on African vs. Western garments" loading="lazy">
+        <div class="figure-caption">Comparison grid showing try-on outputs. African textiles (particularly high-frequency Ankara and Kente) exhibit pronounced pattern dissolution and texture drift relative to Western control garments.</div>
+      </div>
+    </section>
+
+    <!-- FAILURE MODES -->
+    <section class="case-section" aria-label="Failure modes">
+      <div class="section-head"><span class="section-num">06 /</span><h2 class="section-title">Three Systematic Failure Modes</h2></div>
+      <p>Analysis identifies three failure modes that cut across both architectures, indicating the root cause lies in the shared Western training distribution:</p>
+
+      <div class="failure-grid" role="list">
+        <div class="failure-card f1" role="listitem">
+          <div class="failure-icon" aria-hidden="true">◌</div>
+          <div class="failure-name">Pattern Dissolution</div>
+          <div class="failure-body">High-frequency repeating motifs (Ankara geometric patterns, Kente strip weaves) blur or dissolve under spatial warping. TPS and optical-flow modules apply globally smooth deformation fields that apply the same transformation across all spatial frequencies — high-frequency motifs requiring locally precise alignment are systematically blurred.</div>
+        </div>
+        <div class="failure-card f2" role="listitem">
+          <div class="failure-icon" aria-hidden="true">▽</div>
+          <div class="failure-name">Drape Collapse</div>
+          <div class="failure-body">Voluminous non-fitted silhouettes — Agbada, Boubou, Dashiki — collapse to body-fitted shapes during synthesis. The model has no prior for how fabric should fall in heavily draped, non-congruent garments because such garments are entirely absent from its training distribution.</div>
+        </div>
+        <div class="failure-card f3" role="listitem">
+          <div class="failure-icon" aria-hidden="true">◐</div>
+          <div class="failure-name">Tonal Drift</div>
+          <div class="failure-body">The model alters the apparent skin tone of the subject during synthesis. Subjects with darker Monk Scale values (Monk 7–8) show measurable perceptual shift in skin tone in the try-on output — a failure mode invisible to standard perceptual metrics that operate on the garment region alone.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIGNIFICANCE -->
+    <section class="case-section" aria-label="Significance">
+      <div class="section-head"><span class="section-num">07 /</span><h2 class="section-title">Why This Matters</h2></div>
+      <p>
+        Published performance figures for VTON systems substantially overestimate quality for users and garment types outside the Western training distribution. This is a well-known instance of the dataset bias problem — aggregate benchmark performance routinely conceals systematic degradation across underrepresented subgroups.
+      </p>
+      <p>
+        African fashion is not a niche vertical. Nigeria alone has a fashion market exceeding $4B annually. Ankara, Kente, and Boubou are worn by hundreds of millions of people. Virtual try-on as a technology is only useful if it works for the garments those people actually wear — and currently, it doesn't.
+      </p>
+      <div class="callout">
+        <p>AfriVTON-Bench provides the first stratified robustness evaluation framework with African garment and skin tone coverage, enabling future VTON research to measure and address these gaps explicitly rather than reporting aggregate numbers that mask them.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div class="divider"></div>
+
+<footer>
+  <div class="container-wide">
+    <p>Designed &amp; built by <a href="../index.html">Testimony Adekoya</a> · Lagos, Nigeria · 2026</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
+  const toggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => { const open = navLinks.classList.toggle('open'); toggle.setAttribute('aria-expanded', open); });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }));
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  function applyTheme(t) { if(t==='light'){html.setAttribute('data-theme','light');themeToggle&&themeToggle.setAttribute('aria-label','Switch to dark mode');}else{html.removeAttribute('data-theme');themeToggle&&themeToggle.setAttribute('aria-label','Switch to light mode');}localStorage.setItem('theme',t); }
+  if(themeToggle) themeToggle.addEventListener('click', () => applyTheme(html.getAttribute('data-theme')==='light'?'dark':'light'));
+})();
+</script>
+<script src="../js/chat.js" defer></script>
+</body>
+</html>

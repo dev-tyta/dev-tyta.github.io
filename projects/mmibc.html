@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){var t=localStorage.getItem('theme');if(t==='light')document.documentElement.setAttribute('data-theme','light')})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMIBC Case Study — Testimony Adekoya</title>
+  <meta name="description" content="MMIBC: Explainable Multimodal Vision Transformer for Breast Cancer Diagnosis — case study by Testimony Adekoya.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --bg-card: #141414;
+      --bg-card-hover: #1c1c1c;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.18);
+      --text: #f0f0f0;
+      --text-2: #a3a3a3;
+      --text-3: #5a5a5a;
+      --blue: #3b82f6;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --grad: linear-gradient(135deg, #3b82f6, #10b981);
+    }
+
+    [data-theme="light"] {
+      --bg: #f5f5f4;
+      --bg-card: #ffffff;
+      --bg-card-hover: #eeeeec;
+      --border: rgba(0,0,0,0.08);
+      --border-hover: rgba(0,0,0,0.22);
+      --text: #111111;
+      --text-2: #444444;
+      --text-3: #888888;
+    }
+    [data-theme="light"] .nav-inner { background: rgba(245,245,244,0.88); }
+    [data-theme="light"] #nav.scrolled .nav-inner { background: rgba(245,245,244,0.97); border-color: rgba(0,0,0,0.1); }
+    [data-theme="light"] .nav-links { background: rgba(245,245,244,0.97); }
+    [data-theme="light"] .nav-toggle span { background: var(--text); }
+    [data-theme="light"] .case-title { background: linear-gradient(160deg, #111111 30%, #555555 100%); -webkit-background-clip: text; background-clip: text; }
+    [data-theme="light"] .arch-node { background: var(--bg-card); }
+    [data-theme="light"] .arch-arrow { color: var(--text-3); }
+    [data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: rgba(59,130,246,0.1);
+      color: var(--blue);
+      border: 1px solid rgba(59,130,246,0.2);
+    }
+    .tag.green { background: rgba(16,185,129,0.1); color: var(--green); border-color: rgba(16,185,129,0.2); }
+    .tag.amber { background: rgba(245,158,11,0.1); color: var(--amber); border-color: rgba(245,158,11,0.2); }
+    .tag.gray  { background: rgba(255,255,255,0.04); color: var(--text-2); border-color: var(--border); }
+    [data-theme="light"] .tag.gray { background: rgba(0,0,0,0.04); }
+
+    /* ── NAV ── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 0;
+      transition: padding 0.3s;
+    }
+    #nav.scrolled { padding: 10px 0; }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(14,14,14,0.78);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 100px;
+      padding: 7px 7px 7px 22px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    #nav.scrolled .nav-inner { border-color: rgba(255,255,255,0.13); background: rgba(10,10,10,0.96); }
+    .nav-brand {
+      font-family: 'Archivo', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-avatar {
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 15%;
+      flex-shrink: 0;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      transition: border-color 0.2s;
+    }
+    .nav-brand:hover .nav-avatar { border-color: rgba(59,130,246,0.5); }
+    .nav-brand span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      background: var(--grad);
+      color: #fff !important;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+      margin-left: 4px;
+    }
+    .theme-toggle:hover { border-color: var(--border-hover); color: var(--text); }
+    .theme-toggle svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-moon { display: none; }
+    [data-theme="light"] .icon-sun { display: none; }
+    [data-theme="light"] .icon-moon { display: block; }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: linear-gradient(90deg, transparent 0%, var(--border) 30%, var(--border) 70%, transparent 100%); }
+
+    /* ── HERO ── */
+    .case-hero {
+      padding: 160px 0 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    .case-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -160px;
+      width: 540px; height: 540px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .case-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: -80px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-3);
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--text-2); }
+    .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .case-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      background: linear-gradient(160deg, #ffffff 30%, #888888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .case-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .case-meta-sep { color: var(--text-3); }
+    .case-meta span { font-size: 13px; color: var(--text-3); }
+    .case-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 40px; }
+    .hero-stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 48px;
+    }
+    .hero-stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 16px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .hero-stat:hover { border-color: var(--border-hover); }
+    .hero-stat-num {
+      font-family: 'Archivo', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat-label { font-size: 11px; color: var(--text-3); font-weight: 500; line-height: 1.3; }
+    .award-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: rgba(245,158,11,0.07);
+      border: 1px solid rgba(245,158,11,0.2);
+      margin-top: 24px;
+    }
+    .award-banner svg { width: 16px; height: 16px; stroke: var(--amber); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .award-banner span { font-size: 13px; font-weight: 600; color: var(--amber); }
+
+    /* ── BODY ── */
+    .case-body { padding: 72px 0 120px; }
+    .case-section { margin-bottom: 80px; }
+    .case-section:last-child { margin-bottom: 0; }
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+    .section-num {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-3);
+      letter-spacing: 0.12em;
+      font-variant-numeric: tabular-nums;
+    }
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .case-body p {
+      font-size: 15px;
+      color: var(--text-2);
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+    .case-body p:last-child { margin-bottom: 0; }
+    .case-body p strong { color: var(--text); font-weight: 600; }
+
+    /* ── ARCHITECTURE DIAGRAM ── */
+    .arch-diagram {
+      margin: 40px 0;
+      padding: 40px 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow-x: auto;
+    }
+    .arch-diagram-inner {
+      min-width: 640px;
+    }
+    .arch-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 0;
+    }
+    .arch-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .arch-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+    .arch-node {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 18px;
+      text-align: center;
+      min-width: 120px;
+    }
+    .arch-node.highlight-blue {
+      background: rgba(59,130,246,0.08);
+      border-color: rgba(59,130,246,0.25);
+    }
+    .arch-node.highlight-green {
+      background: rgba(16,185,129,0.08);
+      border-color: rgba(16,185,129,0.25);
+    }
+    .arch-node.highlight-amber {
+      background: rgba(245,158,11,0.08);
+      border-color: rgba(245,158,11,0.25);
+    }
+    .arch-node-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .arch-node-label.blue { color: var(--blue); }
+    .arch-node-label.green { color: var(--green); }
+    .arch-node-label.amber { color: var(--amber); }
+    .arch-node-sub { font-size: 11px; color: var(--text-3); line-height: 1.4; }
+    .arch-arrow {
+      color: var(--text-3);
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .arch-arrow-v {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 6px 0;
+      color: var(--text-3);
+      font-size: 14px;
+    }
+    .arch-arrow-v-line {
+      width: 1px;
+      height: 20px;
+      background: var(--border);
+    }
+    .arch-fork {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .arch-fork-line {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+    }
+    .arch-fork-top {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      position: relative;
+    }
+    .arch-fork-h-line {
+      height: 1px;
+      width: 40px;
+      background: var(--border);
+    }
+    .arch-legend {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .arch-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-3);
+    }
+    .arch-legend-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTRIBUTIONS GRID ── */
+    .contrib-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .contrib-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .contrib-card:hover { border-color: var(--border-hover); }
+    .contrib-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-3);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .contrib-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .contrib-body { font-size: 13px; color: var(--text-2); line-height: 1.7; }
+
+    /* ── RESULTS TABLE ── */
+    .results-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin: 24px 0;
+    }
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .results-table th {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .results-table td {
+      padding: 14px 20px;
+      color: var(--text-2);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .results-table tr:last-child td { border-bottom: none; }
+    .results-table tr.highlight td { color: var(--text); font-weight: 600; }
+    .results-table tr.highlight td:first-child { color: var(--green); }
+    .metric-val {
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .metric-val.best { color: var(--green); }
+
+    /* ── DATASET BOX ── */
+    .dataset-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .dataset-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .dataset-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .dataset-sub { font-size: 12px; color: var(--blue); font-weight: 500; margin-bottom: 12px; }
+    .dataset-body { font-size: 13px; color: var(--text-2); line-height: 1.65; }
+    .dataset-stat {
+      display: flex;
+      gap: 16px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .dataset-stat-item { font-size: 12px; color: var(--text-3); }
+    .dataset-stat-item strong { color: var(--text-2); font-weight: 600; }
+
+    /* ── CALLOUT ── */
+    .callout {
+      border-left: 3px solid var(--blue);
+      background: rgba(59,130,246,0.04);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+    }
+    .callout.green { border-left-color: var(--green); background: rgba(16,185,129,0.04); }
+    .callout p { font-size: 14px; color: var(--text-2); line-height: 1.75; margin: 0; }
+    .callout p strong { color: var(--text); }
+
+    /* ── LINKS ── */
+    .case-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .case-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .case-link-btn:hover { opacity: 0.82; transform: translateY(-1px); }
+    .case-link-btn.primary { background: var(--grad); color: #fff; }
+    .case-link-btn.outline { border: 1px solid var(--border); color: var(--text-2); background: transparent; }
+    .case-link-btn.outline:hover { border-color: var(--border-hover); color: var(--text); }
+    .case-link-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      color: var(--text-3);
+      font-size: 13px;
+    }
+    footer a { color: var(--text-3); text-decoration: none; }
+    footer a:hover { color: var(--text-2); }
+
+    /* ── FOCUS / SCROLL / MOTION ── */
+    :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-stat-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; flex-direction: column; position: fixed; top: 61px; left: 0; right: 0; background: rgba(13,13,13,0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 24px; gap: 20px; border-bottom: 1px solid var(--border); z-index: 99; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: flex; }
+      .nav-inner { border-radius: 16px; padding: 10px 10px 10px 16px; }
+      .contrib-grid { grid-template-columns: 1fr; }
+      .dataset-grid { grid-template-columns: 1fr; }
+      .hero-stat-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav" aria-label="Primary navigation">
+  <div class="container-wide">
+    <div class="nav-inner">
+      <a class="nav-brand" href="../index.html">
+        <img src="../img/_DSC4243.JPG" alt="" class="nav-avatar" aria-hidden="true" loading="eager">
+        Testimony <span>Adekoya</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#projects">Projects</a></li>
+        <li><a href="../index.html#research">Research</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+        <li><a class="nav-cta" href="../Testimony_Adekoya_Resume.pdf" target="_blank" rel="noopener">Download CV</a></li>
+      </ul>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Switch to light mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header class="case-hero">
+  <div class="container">
+    <a href="../index.html#projects" class="back-link">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Projects
+    </a>
+    <div class="label">Case Study · Research · Medical AI</div>
+    <h1 class="case-title">MMIBC: Explainable Multimodal Vision Transformer for Breast Cancer Diagnosis</h1>
+    <div class="case-meta">
+      <span>Testimony Adekoya</span>
+      <span class="case-meta-sep">·</span>
+      <span>Submitted MIWAI 2026</span>
+      <span class="case-meta-sep">·</span>
+      <span>DSN AI+ Bootcamp 2025</span>
+    </div>
+    <div class="case-tags">
+      <span class="tag">PyTorch</span>
+      <span class="tag">Vision Transformers</span>
+      <span class="tag">Multimodal ML</span>
+      <span class="tag">XAI</span>
+      <span class="tag gray">Medical Imaging</span>
+      <span class="tag green">Best Poster Award</span>
+    </div>
+    <div class="case-links">
+      <a href="https://github.com/dev-tyta/MMIBC" class="case-link-btn primary" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+    <div class="award-banner" role="note">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+      <span>Best Poster Award — DSN AI+ Bootcamp 2025 · Under review at MIWAI 2026</span>
+    </div>
+    <div class="hero-stat-row" role="list" aria-label="Key metrics">
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num">84%</div>
+        <div class="hero-stat-label">Overall Classification Accuracy</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num">2</div>
+        <div class="hero-stat-label">Imaging Modalities Fused</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num">ViT</div>
+        <div class="hero-stat-label">Parallel Transformer Backbones</div>
+      </div>
+      <div class="hero-stat" role="listitem">
+        <div class="hero-stat-num">Grad-CAM</div>
+        <div class="hero-stat-label">Explainability Method</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- ═══ BODY ═══ -->
+<main class="case-body">
+  <div class="container">
+
+    <!-- PROBLEM -->
+    <section class="case-section" aria-label="Problem">
+      <div class="section-head">
+        <span class="section-num">01 /</span>
+        <h2 class="section-title">The Problem</h2>
+      </div>
+      <p>
+        Breast cancer remains one of the leading causes of death among women globally. In Sub-Saharan Africa, the burden is disproportionately high — late-stage diagnosis is common, trained radiologists are scarce, and advanced imaging infrastructure is expensive. The modalities that <em>are</em> accessible — <strong>mammography and ultrasonography</strong> — are typically used in isolation, limiting their diagnostic potential.
+      </p>
+      <p>
+        The AI systems that have shown promise in breast cancer screening are largely unimodal and suffer from a critical limitation: they are <strong>black boxes</strong>. A model that achieves expert-level accuracy but cannot explain its reasoning erodes clinical trust. Practitioners understandably resist basing patient care decisions on systems they cannot understand or verify.
+      </p>
+      <div class="callout">
+        <p><strong>The research gap:</strong> No prior framework fused strictly non-invasive, accessible modalities (mammography + ultrasound) with first-class explainability designed specifically for resource-limited settings in Africa — without requiring biopsy data, genomics, or paired multimodal datasets.</p>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="case-section" aria-label="Approach">
+      <div class="section-head">
+        <span class="section-num">02 /</span>
+        <h2 class="section-title">Approach</h2>
+      </div>
+      <p>
+        MMIBC (Multimodal Medical Imaging for Breast Cancer) proposes an <strong>explainable multimodal Vision Transformer framework</strong> that fuses mammography and ultrasonography for unified breast cancer diagnosis. The design addresses three constraints simultaneously: low-resource deployment, unpaired dataset availability, and clinical interpretability.
+      </p>
+
+      <!-- Architecture diagram -->
+      <div class="arch-diagram" role="img" aria-label="MMIBC architecture diagram">
+        <div class="arch-diagram-inner">
+
+          <!-- Row 1: inputs + encoders + fusion + classifier -->
+          <div style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:nowrap;">
+
+            <!-- Inputs column -->
+            <div style="display:flex;flex-direction:column;gap:20px;flex-shrink:0;">
+              <div class="arch-node highlight-blue">
+                <div class="arch-node-label blue">Mammography</div>
+                <div class="arch-node-sub">VinDr-Mammo<br>X-ray images</div>
+              </div>
+              <div class="arch-node highlight-blue">
+                <div class="arch-node-label blue">Ultrasonography</div>
+                <div class="arch-node-sub">BUSI dataset<br>Ultrasound images</div>
+              </div>
+            </div>
+
+            <!-- Arrow pair -->
+            <div style="display:flex;flex-direction:column;gap:20px;padding:0 12px;">
+              <div class="arch-arrow" aria-hidden="true">→</div>
+              <div class="arch-arrow" aria-hidden="true">→</div>
+            </div>
+
+            <!-- Parallel ViT encoders -->
+            <div style="display:flex;flex-direction:column;gap:20px;flex-shrink:0;">
+              <div class="arch-node highlight-blue">
+                <div class="arch-node-label blue">ViT Encoder A</div>
+                <div class="arch-node-sub">Modality-specific<br>feature extraction</div>
+              </div>
+              <div class="arch-node highlight-blue">
+                <div class="arch-node-label blue">ViT Encoder B</div>
+                <div class="arch-node-sub">Modality-specific<br>feature extraction</div>
+              </div>
+            </div>
+
+            <!-- Arrow to fusion -->
+            <div style="padding:0 12px;">
+              <div class="arch-arrow" aria-hidden="true">→</div>
+            </div>
+
+            <!-- Feature fusion -->
+            <div style="flex-shrink:0;">
+              <div class="arch-node highlight-green" style="min-width:130px;">
+                <div class="arch-node-label green">Feature Fusion</div>
+                <div class="arch-node-sub">Feature-level<br>concatenation</div>
+              </div>
+            </div>
+
+            <!-- Arrow to classifier -->
+            <div style="padding:0 12px;">
+              <div class="arch-arrow" aria-hidden="true">→</div>
+            </div>
+
+            <!-- Classifier + output -->
+            <div style="display:flex;flex-direction:column;gap:12px;flex-shrink:0;">
+              <div class="arch-node highlight-green" style="min-width:120px;">
+                <div class="arch-node-label green">MLP Head</div>
+                <div class="arch-node-sub">Lightweight<br>classifier</div>
+              </div>
+              <div class="arch-node" style="text-align:center;min-width:120px;">
+                <div class="arch-node-label" style="color:var(--text);">Diagnosis</div>
+                <div class="arch-node-sub">Benign / Malignant<br>/ Normal</div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Row 2: XAI layer -->
+          <div style="display:flex;justify-content:center;margin-top:20px;">
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="arch-arrow-v-line" aria-hidden="true"></div>
+              <div class="arch-node highlight-amber" style="min-width:200px;">
+                <div class="arch-node-label amber">Grad-CAM XAI Layer</div>
+                <div class="arch-node-sub">Gradient-weighted Class Activation Maps — highlights clinically relevant anatomical regions for each prediction</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="arch-legend" aria-label="Diagram legend">
+            <div class="arch-legend-item">
+              <div class="arch-legend-dot" style="background:var(--blue);" aria-hidden="true"></div>
+              Input processing
+            </div>
+            <div class="arch-legend-item">
+              <div class="arch-legend-dot" style="background:var(--green);" aria-hidden="true"></div>
+              Fusion &amp; classification
+            </div>
+            <div class="arch-legend-item">
+              <div class="arch-legend-dot" style="background:var(--amber);" aria-hidden="true"></div>
+              Explainability
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <p>
+        A key challenge was the absence of <strong>natively paired multimodal datasets</strong> — mammography and ultrasound images of the same patient taken simultaneously. To address this, MMIBC introduces a <strong>label-consistent programmatic pairing strategy</strong>: samples from the mammography and ultrasound datasets are paired by diagnostic label during training, enabling multimodal learning under realistic data constraints without requiring simultaneous dual-modality imaging.
+      </p>
+    </section>
+
+    <!-- DATASETS -->
+    <section class="case-section" aria-label="Datasets">
+      <div class="section-head">
+        <span class="section-num">03 /</span>
+        <h2 class="section-title">Datasets</h2>
+      </div>
+      <p>MMIBC uses two publicly available datasets representing diverse African and Asian populations — deliberately chosen to reflect real-world deployment contexts where proprietary hospital datasets are unavailable.</p>
+      <div class="dataset-grid">
+        <div class="dataset-card">
+          <div class="dataset-name">VinDr-Mammo</div>
+          <div class="dataset-sub">Mammography — X-ray</div>
+          <div class="dataset-body">Large-scale mammography dataset from Vietnamese hospitals. Provides X-ray images with radiologist-annotated BI-RADS assessments across benign and malignant findings.</div>
+          <div class="dataset-stat">
+            <div class="dataset-stat-item">Modality: <strong>Mammography</strong></div>
+            <div class="dataset-stat-item">Origin: <strong>Vietnam</strong></div>
+          </div>
+        </div>
+        <div class="dataset-card">
+          <div class="dataset-name">BUSI</div>
+          <div class="dataset-sub">Breast Ultrasound Images</div>
+          <div class="dataset-body">Breast Ultrasound Images dataset collected from Egyptian women aged 25–75. Covers normal, benign, and malignant cases with expert segmentation masks.</div>
+          <div class="dataset-stat">
+            <div class="dataset-stat-item">Modality: <strong>Ultrasonography</strong></div>
+            <div class="dataset-stat-item">Origin: <strong>Egypt</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY CONTRIBUTIONS -->
+    <section class="case-section" aria-label="Key contributions">
+      <div class="section-head">
+        <span class="section-num">04 /</span>
+        <h2 class="section-title">Key Contributions</h2>
+      </div>
+      <div class="contrib-grid">
+        <div class="contrib-card">
+          <div class="contrib-num">I</div>
+          <div class="contrib-title">Explainable Multimodal Architecture</div>
+          <div class="contrib-body">Parallel pretrained ViT backbones for modality-specific representation learning, followed by feature-level fusion and a lightweight MLP classification head. Designed to run on accessible imaging hardware without high-compute infrastructure.</div>
+        </div>
+        <div class="contrib-card">
+          <div class="contrib-num">II</div>
+          <div class="contrib-title">Programmatic Pairing Strategy</div>
+          <div class="contrib-body">Label-consistent pairing of mammography and ultrasound samples enables multimodal training from publicly available but natively unpaired datasets — removing the dependency on simultaneous dual-modality imaging sessions.</div>
+        </div>
+        <div class="contrib-card">
+          <div class="contrib-num">III</div>
+          <div class="contrib-title">Grad-CAM Clinical Transparency</div>
+          <div class="contrib-body">Integration of Gradient-weighted Class Activation Mapping produces visual heatmaps highlighting the anatomical regions that drove each diagnostic decision — providing interpretable evidence that frontline clinicians can evaluate and trust.</div>
+        </div>
+        <div class="contrib-card">
+          <div class="contrib-num">IV</div>
+          <div class="contrib-title">Context-Specific Benchmarking</div>
+          <div class="contrib-body">Detailed evaluation of performance trade-offs arising from dataset class imbalance in low-resource settings — surfacing real deployment constraints rather than reporting only best-case accuracy.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="case-section" aria-label="Results">
+      <div class="section-head">
+        <span class="section-num">05 /</span>
+        <h2 class="section-title">Results</h2>
+      </div>
+      <p>
+        MMIBC achieved <strong>84% overall classification accuracy</strong> across three diagnostic classes (normal, benign, malignant) on the VinDr-Mammo and BUSI test sets. Qualitative explainability results confirmed that Grad-CAM attention maps align with clinically relevant anatomical regions — microcalcification clusters and lesion margins — rather than image artifacts or background features.
+      </p>
+
+      <div class="results-table-wrap" role="table" aria-label="Performance metrics by class">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th scope="col">Class</th>
+              <th scope="col">Precision</th>
+              <th scope="col">Recall</th>
+              <th scope="col">F1 Score</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Normal</td>
+              <td class="metric-val">High</td>
+              <td class="metric-val">High</td>
+              <td class="metric-val">High</td>
+              <td style="font-size:12px;color:var(--text-3);">Well-represented class</td>
+            </tr>
+            <tr>
+              <td>Benign</td>
+              <td class="metric-val">Moderate</td>
+              <td class="metric-val">Moderate</td>
+              <td class="metric-val">Moderate</td>
+              <td style="font-size:12px;color:var(--text-3);">Boundary cases with malignant</td>
+            </tr>
+            <tr class="highlight">
+              <td>Malignant</td>
+              <td class="metric-val best">Variable</td>
+              <td class="metric-val best">Variable</td>
+              <td class="metric-val best">Variable</td>
+              <td style="font-size:12px;color:var(--text-3);">Impacted by class imbalance</td>
+            </tr>
+            <tr>
+              <td><strong>Overall</strong></td>
+              <td class="metric-val" colspan="2"></td>
+              <td class="metric-val best">84%</td>
+              <td style="font-size:12px;color:var(--text-3);">Weighted accuracy</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
+        <p><strong>Explainability finding:</strong> Grad-CAM heatmaps consistently highlighted regions corresponding to known clinical indicators — microcalcifications in mammograms, hypoechoic lesion margins in ultrasound — confirming that the model's predictions are grounded in clinically relevant evidence, not spurious correlations.</p>
+      </div>
+
+      <p>
+        Dataset imbalance — particularly for malignant cases — highlighted a critical real-world constraint: deployment in low-resource settings means working with skewed class distributions. The paper analyzes these trade-offs explicitly, which influenced the design of the evaluation protocol to go beyond aggregate accuracy.
+      </p>
+    </section>
+
+    <!-- LIMITATIONS & FUTURE -->
+    <section class="case-section" aria-label="Limitations and future work">
+      <div class="section-head">
+        <span class="section-num">06 /</span>
+        <h2 class="section-title">Limitations & Future Work</h2>
+      </div>
+      <p>
+        The programmatic pairing strategy, while necessary and effective, is a proxy for true paired multimodal imaging. Future work should incorporate natively paired datasets as they become available. The class imbalance problem in malignant case detection warrants continued attention — oversampling strategies, focal loss formulations, and synthetic augmentation using diffusion models are all candidate approaches.
+      </p>
+      <p>
+        The framework was validated on African and Asian population data (Egypt, Vietnam). Extension to broader demographic datasets, particularly with West African imaging data where breast tissue density patterns differ, would strengthen clinical generalizability. Finally, prospective clinical validation with radiologist feedback loops is the essential next step before real-world deployment.
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<div class="divider"></div>
+
+<footer>
+  <div class="container-wide">
+    <p>Designed &amp; built by <a href="../index.html">Testimony Adekoya</a> · Lagos, Nigeria · 2026</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 24), { passive: true });
+
+  const toggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  function applyTheme(theme) {
+    if (theme === 'light') {
+      html.setAttribute('data-theme', 'light');
+      themeToggle && themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+    } else {
+      html.removeAttribute('data-theme');
+      themeToggle && themeToggle.setAttribute('aria-label', 'Switch to light mode');
+    }
+    localStorage.setItem('theme', theme);
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      applyTheme(html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+    });
+  }
+})();
+</script>
+<script src="../js/chat.js" defer></script>
+</body>
+</html>
